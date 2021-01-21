@@ -1,0 +1,176 @@
+<?php
+
+class Account{
+        private $pdo;
+        private $errorArray=array();
+
+        public function __construct(){
+            $this->pdo=Database::instance();
+        }
+        
+
+        public function register($fn,$ln,$un,$em,$pw,$pw2){
+                $this->validateFirstName($fn);
+                $this->validateLastName($ln);
+                $this->validateEmail($em);
+                $this->validatePasswords($pw,$pw2); 
+                if(empty($this->errorArray)){
+                    return $this->insertUserDetails($fn,$ln,$un,$em,$pw);
+                }else{
+                    return false;
+                }
+
+        }
+
+        public function login($username,$pass){
+            $pass_hash=$this->getHashPassword($username);
+            $stmt=$this->pdo->prepare("SELECT * FROM `users` WHERE (`username`=:un AND `password`=:pass) OR (`email`=:un AND password=:pass)");
+            $stmt->bindParam(":pass",$pass_hash,PDO::PARAM_STR);
+            $stmt->bindParam(":un",$username,PDO::PARAM_STR);
+            $stmt->execute();
+          
+            $user=$stmt->fetch(PDO::FETCH_OBJ);
+            // var_dump($user);
+            $count=$stmt->rowCount();
+            if($count != 0){
+                if(password_verify($pass,$pass_hash)){
+                    return $user->user_id;
+                }else{
+                    array_push($this->errorArray,Constant::$loginPasswordFailed);
+                    return false;
+                }
+            }else{
+                array_push($this->errorArray,Constant::$loginPasswordFailed);
+                return false;
+            }
+
+        }
+
+        private function validateFirstName($fn){
+            if($this->length($fn,2,25)){
+                array_push($this->errorArray,Constant::$firstNameCharacters);
+                return;
+            }
+        }
+        private function validateLastName($ln){
+            if($this->length($ln,2,25)){
+                array_push($this->errorArray,Constant::$lastNameCharacters);
+                return;
+            }
+        }
+       
+        public function generateUsername($fn,$ln){
+            if(!empty($fn) && !empty($ln)){
+                if(!in_array(Constant::$firstNameCharacters,$this->errorArray) && !in_array(Constant::$lastNameCharacters,$this->errorArray)){
+                    $username=strtolower($fn."".$ln);
+                    if($this->checkUsernameExist($username)){
+                            $screenRand=rand();
+                            $userLink=''.$username.''.$screenRand;
+                    }else{
+                        $userLink=$username;
+                    }
+                    return $userLink;
+                }
+            }
+        }
+
+
+        private function getHashPassword($un){
+            $stmt=$this->pdo->prepare("SELECT `password` FROM `users` WHERE username=:un OR email=:un");
+            $stmt->bindParam(":un",$un,PDO::PARAM_STR);
+            $stmt->execute();
+            $user=$stmt->fetch(PDO::FETCH_OBJ);
+            $count=$stmt->rowCount();
+            if($count != 0){
+                return $user->password;
+            }else{
+                return false;
+            }
+        }
+
+        private function checkUsernameExist($username){
+            $stmt=$this->pdo->prepare("SELECT username FROM users WHERE username=:username");
+            $stmt->bindParam(":username",$username,PDO::PARAM_STR);
+            $stmt->execute();
+            $count=$stmt->rowCount();
+            if($count >0){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        private function validateEmail($em){
+            $stmt=$this->pdo->prepare("SELECT email FROM users WHERE email=:email");
+            $stmt->bindParam(":email",$em,PDO::PARAM_STR);
+            $stmt->execute();
+            if($stmt->rowCount() !=0){
+                array_push($this->errorArray,Constant::$emailTaken);
+            }
+
+            if(!filter_var($em,FILTER_VALIDATE_EMAIL)){
+                array_push($this->errorArray,Constant::$emailInvalid);
+                return ;
+            }
+        }
+
+        private function validatePasswords($pw,$pw2){
+            if($pw != $pw2){
+                array_push($this->errorArray,Constant::$passwordsDoNotMatch);
+                return ;
+            }
+            if($this->length($pw,5,25)){
+                array_push($this->errorArray,Constant::$passwordTooShort);
+                return ;
+            }
+            if($this->length($pw2,5,25)){
+                array_push($this->errorArray,Constant::$passwordTooShort);
+                return ;
+            }
+            if(preg_match("/[^A-Za-z0-9]/",$pw)){
+             
+                array_push($this->errorArray,Constant::$passwordNotAlphaNumeric);
+                return ;
+            }
+        }
+       private function insertUserDetails($fn,$ln,$un,$em,$pw){
+           $pass_hash=password_hash($pw,PASSWORD_BCRYPT);
+           $rand=rand(0,2);
+           if($rand==0){
+               $profilePic="frontend/assets/images/defaultProfilePic.png";
+               $profileCover="frontend/assets/images/backgroundCoverPic.svg";
+           }else if($rand==1){
+            $profilePic="frontend/assets/images/defaultPic.svg";
+            $profileCover="frontend/assets/images/backgroundImage.svg";
+           }else if($rand==2){
+            $profilePic="frontend/assets/images/avatar.png";
+            $profileCover="frontend/assets/images/backgroundCoverPic.svg";
+           }
+
+           $stmt=$this->pdo->prepare("INSERT INTO users (firstName,lastName,username,email,password,profileImage,profileCover) VALUES (:fn,:ln,:un,:em,:pw,:pic,:cov)");
+           $stmt->bindParam(":fn",$fn,PDO::PARAM_STR);
+           $stmt->bindParam(":ln",$ln,PDO::PARAM_STR);
+           $stmt->bindParam(":un",$un,PDO::PARAM_STR);
+           $stmt->bindParam(":em",$em,PDO::PARAM_STR);
+           $stmt->bindParam(":pw",$pass_hash,PDO::PARAM_STR);
+           $stmt->bindParam(":pic",$profilePic,PDO::PARAM_STR);
+           $stmt->bindParam(":cov",$profileCover,PDO::PARAM_STR);
+           $stmt->execute();
+
+           return $this->pdo->lastInsertId();
+       }
+        
+        private function length($input,$min,$max){
+            if(strlen($input) <$min){
+                return true;
+            }else if(strlen($input) > $max){
+                return true;
+            }
+        }
+        public function getError($error){
+            if(in_array($error,$this->errorArray)){
+                return "<span class='errorMessage'>$error</span>";
+            }
+        }
+
+}
