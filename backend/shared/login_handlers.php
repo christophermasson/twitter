@@ -14,7 +14,7 @@ if(isset($_SESSION['userLoggedIn'])){
     $wasSuccessful=$account->login($username,$pass);
     
     if($wasSuccessful){
-      //FIX BUG IN VIDEO LECTURE
+      $user_id=$wasSuccessful;
       $_SESSION['userLoggedIn']=$wasSuccessful;
       if(isset($_POST['remember'])){
         $tstrong=true;
