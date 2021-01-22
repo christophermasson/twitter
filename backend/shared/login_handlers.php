@@ -14,7 +14,6 @@ if(isset($_SESSION['userLoggedIn'])){
     $wasSuccessful=$account->login($username,$pass);
     
     if($wasSuccessful){
-      $user_id=$wasSuccessful;
       $_SESSION['userLoggedIn']=$wasSuccessful;
       if(isset($_POST['remember'])){
         $tstrong=true;
