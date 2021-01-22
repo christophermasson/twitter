@@ -140,11 +140,11 @@ class Account{
                $profilePic="frontend/assets/images/defaultProfilePic.png";
                $profileCover="frontend/assets/images/backgroundCoverPic.svg";
            }else if($rand==1){
-            $profilePic="frontend/assets/images/defaultPic.svg";
-            $profileCover="frontend/assets/images/backgroundImage.svg";
+              $profilePic="frontend/assets/images/defaultPic.svg";
+              $profileCover="frontend/assets/images/backgroundImage.svg";
            }else if($rand==2){
-            $profilePic="frontend/assets/images/avatar.png";
-            $profileCover="frontend/assets/images/backgroundCoverPic.svg";
+              $profilePic="frontend/assets/images/avatar.png";
+              $profileCover="frontend/assets/images/backgroundCoverPic.svg";
            }
 
            $stmt=$this->pdo->prepare("INSERT INTO users (firstName,lastName,username,email,password,profileImage,profileCover) VALUES (:fn,:ln,:un,:em,:pw,:pic,:cov)");
