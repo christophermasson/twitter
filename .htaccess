@@ -1,4 +1,4 @@
 RewriteEngine On
 
-RewriteRule ^(verification|signUp|login|index|home|logout)/?$  $1.php
+RewriteRule ^(verification|signUp|login|index|home)/?$  $1.php
 RewriteRule ^verification/([a-zA-Z0-9]+)/?$ verification.php?verify=$1
