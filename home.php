@@ -25,7 +25,7 @@ $pageTitle="Home / Twitter";
            <div class="site-logo">
                 <h1 class="site-logo-heading">
                     <a href="<?php echo url_for('home'); ?>" class="site-logo-link">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" ><g><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/></g></svg>
+                       <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" ><g><path d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"/></g></svg>
                     </a>
                 </h1>
            </div>
@@ -55,7 +55,7 @@ $pageTitle="Home / Twitter";
         <footer class="w-header-footer">
            <div class="w-header-container">
               <div class="w-header-pr" aria-label="<?php echo $user->firstName.' '.$user->lastName; ?>">
-                 <img width='20px' height="20px" src="<?php echo url_for($user->profileImage); ?>" alt="<?php echo $user->firstName.' '.$user->lastName; ?>">
+                 <img src="<?php echo url_for($user->profileImage); ?>" alt="<?php echo $user->firstName.' '.$user->lastName; ?>">
               </div>
               <div class="w-header-name">
                  <div class="w-header-fullName">
@@ -65,11 +65,41 @@ $pageTitle="Home / Twitter";
                    <span class="username-text">@<?php echo $user->username; ?></span>
                  </div>
               </div>
+              <div class="w-header-dot">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"><g><path d="M19.39 14.882c-1.58 0-2.862-1.283-2.862-2.86s1.283-2.862 2.86-2.862 2.862 1.283 2.862 2.86-1.284 2.862-2.86 2.862zm0-4.223c-.75 0-1.362.61-1.362 1.36s.61 1.36 1.36 1.36 1.362-.61 1.362-1.36-.61-1.36-1.36-1.36zM12 14.882c-1.578 0-2.86-1.283-2.86-2.86S10.42 9.158 12 9.158s2.86 1.282 2.86 2.86S13.578 14.88 12 14.88zm0-4.223c-.75 0-1.36.61-1.36 1.36s.61 1.362 1.36 1.362 1.36-.61 1.36-1.36-.61-1.363-1.36-1.363zm-7.39 4.223c-1.577 0-2.86-1.283-2.86-2.86S3.034 9.16 4.61 9.16s2.862 1.283 2.862 2.86-1.283 2.862-2.86 2.862zm0-4.223c-.75 0-1.36.61-1.36 1.36s.61 1.36 1.36 1.36 1.362-.61 1.362-1.36-.61-1.36-1.36-1.36z"/></g></svg>
+              </div>
            </div>
         </footer>
+      </div>
+      <div id="myLogoutModal" class="logout-modal">
+         <div class="logout-wrapper">
+            <div class="logout-container">
+               <svg viewBox="0 0 24 24" class="down" style="width:24px;"><g><path d="M12.538 6.478c-.14-.146-.335-.228-.538-.228s-.396.082-.538.228l-9.252 9.53c-.21.217-.27.538-.152.815.117.277.39.458.69.458h18.5c.302 0 .573-.18.69-.457.118-.277.058-.598-.152-.814l-9.248-9.532z"></path></g></svg>
+               <div class="logout-modal-body">
+                  <div class="logout-modal-header" role="button" tabindex="0" data-focusable="true">
+                     <div class="wrapper-image">
+                        <img src="<?php echo url_for($user->profileImage); ?>" alt="<?php echo $user->firstName.' '.$user->lastName; ?>">
+                     </div>
+                     <div class="user-name">
+                        <span class="user-fullName">
+                           <?php echo $user->firstName.' '.$user->lastName; ?>
+                        </span>
+                        <span class="user-screenName">
+                           @<?php echo $user->username; ?>
+                        </span>
+                     </div>
+                     <img src="<?php echo url_for('frontend/assets/images/check.svg') ?>" alt="" width="20px" style="margin-left:auto;">
+                  </div>
+                  <a href="<?php echo url_for('logout'); ?>" class="logout-modal-footer">
+                     <i class="fa fa-sign-out"></i> Logout @<?php echo $user->username; ?>
+                 </a>
+               </div>
+            </div>
+         </div>
       </div>
    </header>
    <main role="main" class="mainSectionContainer">
      Main
    </main>
 </section>
+<script src="<?php echo url_for("frontend/assets/js/common.js"); ?>"></script>

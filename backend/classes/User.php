@@ -35,7 +35,7 @@ class User{
             return $this->pdo->lastInsertId();
         }
     }
-
+           
     public function get($tableName,$columnName=array(),$fields=array()){
         $targetColumns=implode(', ',array_values($columnName));
         $columns="";
@@ -57,6 +57,8 @@ class User{
         }
 
     }
+    
+
 
     public function update($tableName,$user_id,$fields=array()){
         $columns="";
