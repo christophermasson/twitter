@@ -20,7 +20,11 @@ function redirect_to($location){
     header("Location:".$location);
     exit;
 }
-
+ function log_out_user(){
+     unset($_SESSION['userLoggedIn']);
+     session_destroy();
+     return true;
+ }
 function  getInputValue($name){
     if(isset($_POST[$name])){
         echo $_POST[$name];

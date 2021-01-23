@@ -59,7 +59,21 @@ class User{
     }
     
 
-
+    public function delete($tableName,$fields=array()){
+        $sql="DELETE FROM `{$tableName}`";
+        $where= " WHERE ";
+        foreach($fields as $name => $value){
+            $sql .= "{$where} `{$name}` =:{$name}";
+            $where = " AND ";
+        }
+        if($stmt=$this->pdo->prepare($sql)){
+            foreach($fields as $name => $value){
+                $stmt->bindValue(':'.$name,$value);
+            }
+            $stmt->execute();
+        }
+    }
+  
     public function update($tableName,$user_id,$fields=array()){
         $columns="";
         $i=1;

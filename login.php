@@ -18,7 +18,7 @@ $pageTitle="Login on Twitter | Twitter";
              <div class="form-group">
                  <?php echo $account->getError(Constant::$loginPasswordFailed); ?>
                   <label for="username">Username or Email</label>
-                  <input type="text" name="username" id="username" value="<?php getInputValue('firstName'); ?>" autocomplete="off" required>    
+                  <input type="text" name="username" id="username" value="<?php getInputValue('username'); ?>" autocomplete="off" required>    
             </div>
              <div class="form-group">
                    <label for="password">Password</label>
