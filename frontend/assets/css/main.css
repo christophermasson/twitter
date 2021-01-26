@@ -256,7 +256,7 @@ section.mainSectionContainer {
     height:100%;
     border-radius:var(--corner-radius-full);
     object-fit:cover;
-    background-color:#ddd;
+    background: #b3b6b9;
 }
 .textareaContainer{
     flex:1;
