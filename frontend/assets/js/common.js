@@ -1,3 +1,5 @@
+let uid=$(".u-p-id").data("uid");
+
 $(function(){
    
     let path=window.location.href;
@@ -21,3 +23,33 @@ window.onclick=function(event){
     if(event.target==modal)
     modal.style.display="none";
 }
+
+$(document).on("keyup","#postTextarea",function(e){
+    e.preventDefault();
+    let textbox=$(e.target);
+    let value=textbox.val().trim();
+    let submitButton=$("#submitPostButton");
+
+    if(value == ""){
+        submitButton.prop("disabled",true);
+        return;
+    }
+    
+    submitButton.prop("disabled",false);
+
+});
+
+$("#submitPostButton").click(e=>{
+    e.preventDefault();
+    let textValue=$("#postTextarea").val();
+    let userid=uid;
+    
+    if(textValue != "" && textValue != null){
+        $.post("http://localhost/twitter/backend/ajax/post.php",{onlyStatusText:textValue,userid:userid},function(data){
+            alert(data);
+            $("#postTextarea").val("");
+            submitButton.prop("disabled",true);
+        })
+    }
+    
+})

@@ -18,6 +18,7 @@ $pageTitle="Home / Twitter";
 
 ?>
 <?php require_once 'backend/shared/header.php'; ?>
+<div class="u-p-id" data-uid="<?php echo $user_id; ?>"></div>
 <section class="wrapper">
    <?php  require_once 'backend/shared/nav_header.php'; ?>
    <main role="main">
