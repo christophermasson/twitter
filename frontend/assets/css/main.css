@@ -1,5 +1,7 @@
 :root{
     --gray:rgb(235,238,240);
+    --greyButtonText:rgba(0,0,0,0.34);
+    --grayText:rgb(101,119,134);
     --spacing:1.5rem;
     --corner-radius-sm:1.6rem;
     --corner-radius-full:9999px;
@@ -30,6 +32,7 @@ header.h-heading-wr {
     justify-content: space-between;
     align-items: flex-start;
     width: 234px;
+    position: fixed;
 }
 .h-wrapper-nav-link {
     flex: 1;
@@ -285,4 +288,94 @@ input#submitPostButton {
 }
 #submitPostButton:enabled{
     cursor:pointer !important;
+}
+.postContainer .post{
+    display:flex;
+    flex-direction:column;
+    padding:var(--spacing);
+    cursor:pointer;
+    border-bottom:.1rem solid var(--gray);
+    transition: background-color 0.3s;
+}
+.postContainer .mainContentContainer{
+    display:flex;
+    flex:1;
+}
+
+.postContentContainer{
+    padding-left:var(--spacing);
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+.post-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.post-header a{
+    padding-right:0.5rem;
+}
+a.displayName{
+    font-weight:bold;
+    color:#000;
+    font-size:1.7rem;
+}
+a.displayName:hover{
+    text-decoration: underline;
+}
+.postContainer .username,.postContainer .date{
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--grayText);
+}
+span.dot{
+    padding-left:3rem;
+    font-size:2rem;
+    font-weight:700;
+}
+svg{
+    width:2rem;
+    height:2rem;
+}
+svg.dot-icon{
+    width:3rem;
+    height:3rem;
+    fill:rgb(91,112,131);
+}
+span.dot:hover svg.dot-icon{
+    border-radius:var(--corner-radius-full);
+    fill:var(--blue);
+    background-color:var(--blue-50-a1);
+    padding:3px;
+}
+.post:hover{
+    background-color: rgba(0,0,0,0.03);
+}
+.post-body div{
+    font-size:1.6rem;
+    line-height:1.65rem;
+}
+.post-footer{
+    display:flex;
+    align-items:center;
+}
+.post-footer .postButtonContainer{
+    flex:1;
+    display:flex;
+}
+.post-footer .postButtonContainer button{
+    margin-top:1rem;
+    padding:3px 5px;
+    background-color:transparent;
+    border:none;
+    font-size:2rem;
+    color:var(--greyButtonText);
+    cursor:pointer;
+}
+span.retweetsCount {
+    color: rgb(23,191,99);
+}
+span.likesCounter {
+    color: rgb(224,36,94);
 }

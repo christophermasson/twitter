@@ -41,12 +41,13 @@ $(document).on("keyup","#postTextarea",function(e){
 
 $("#submitPostButton").click(e=>{
     e.preventDefault();
+    let submitButton=$("#submitPostButton");
     let textValue=$("#postTextarea").val();
     let userid=uid;
     
     if(textValue != "" && textValue != null){
         $.post("http://localhost/twitter/backend/ajax/post.php",{onlyStatusText:textValue,userid:userid},function(data){
-            alert(data);
+            $(".postContainer").html(data);
             $("#postTextarea").val("");
             submitButton.prop("disabled",true);
         })

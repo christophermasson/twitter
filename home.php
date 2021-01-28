@@ -1,18 +1,17 @@
 <?php
 include 'backend/initialize.php';
-$user_id=$_SESSION['userLoggedIn'];
 
-$status=$verify->getVerifyStatus(["status"],$user_id);
-if(isset($_SESSION['userLoggedIn']) && $status->status=='1'){
+if(isset($_SESSION['userLoggedIn'])){
    $user_id=$_SESSION['userLoggedIn'];
 }else if(Login::isLoggedIn()){
    $user_id=Login::isLoggedIn();
-}else{
-    redirect_to(url_for('index'));
+}
+$status=$verify->getVerifyStatus(["status"],$user_id);
+if(!$status->status=='1'){
+   redirect_to(url_for('index'));
 }
 
 $user=$loadFromUser->userData($user_id);
-
 
 $pageTitle="Home / Twitter";
 
@@ -38,6 +37,9 @@ $pageTitle="Home / Twitter";
               </div>
            </form>
         </div>
+        <section aria-label="Timeline:Your Home Timeline" class="postContainer">
+          <?php $loadFromTweet->tweets($user_id); ?>
+        </section>
      </section>
      <aside role="complementary">
         Aside

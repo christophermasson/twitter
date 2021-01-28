@@ -25,6 +25,7 @@ spl_autoload_register(function($class){
 $account=new Account;
 $loadFromUser=new User;
 $verify=new Verify;
+$loadFromTweet=new Tweet;
 
 include "functions.php";
 
