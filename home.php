@@ -31,7 +31,7 @@ $pageTitle="Home / Twitter";
               <img src="<?php echo url_for($user->profileImage); ?>" alt="<?php echo $user->firstName.' '.$user->lastName; ?>">
            </a>
            <form class="textareaContainer">
-              <textarea  id="postTextarea" placeholder="What's happening?" aria-label="What's happening?" autofocus></textarea>
+              <textarea  id="postTextarea" placeholder="What's happening?" aria-label="What's happening?"></textarea>
               <div class="buttonsContainer">
                  <input type="submit" id="submitPostButton" disabled="true" role="button" value="POST">
               </div>
