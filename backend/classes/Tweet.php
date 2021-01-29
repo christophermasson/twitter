@@ -10,17 +10,18 @@ class Tweet{
         $this->user=new User;
     }
 
-    public function tweets($user_id){
-        $stmt=$this->pdo->prepare("SELECT * FROM `tweets`,`users` WHERE `tweetBy`=`user_id` AND `user_id`=:userId ORDER BY postedOn DESC");
+    public function tweets($user_id,$num){
+        $stmt=$this->pdo->prepare("SELECT * FROM `tweets`,`users` WHERE `tweetBy`=`user_id` AND `user_id`=:userId ORDER BY postedOn DESC LIMIT :num");
         $stmt->bindParam(":userId",$user_id,PDO::PARAM_INT);
+        $stmt->bindParam(":num",$num,PDO::PARAM_INT);
         $stmt->execute();
         $tweets=$stmt->fetchAll(PDO::FETCH_OBJ);
         foreach($tweets as $tweet){
             echo '<article role="article" data-focusable="true" tabindex="0" class="post">
             <div class="mainContentContainer">
-               <div class="userImageContainer">
+               <a href="'.url_for($tweet->username).'" role="link" class="userImageContainer">
                  <img src="'.url_for($tweet->profileImage).'" alt="'.$tweet->firstName.' '.$tweet->lastName.'">
-               </div>
+               </a>
                <div class="postContentContainer">
                   <div class="post-header">
                      <div class="post-header-featured-left">

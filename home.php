@@ -27,9 +27,9 @@ $pageTitle="Home / Twitter";
            <img src="<?php echo url_for("frontend/assets/images/star.svg"); ?>" width="40px" height="40px" alt="">
         </div>
         <div class="header-post">
-           <div class="userImageContainer" aria-label="<?php echo $user->firstName.' '.$user->lastName; ?>">
+           <a href="<?php echo url_for($user->username); ?>" role="link" class="userImageContainer" aria-label="<?php echo $user->firstName.' '.$user->lastName; ?>">
               <img src="<?php echo url_for($user->profileImage); ?>" alt="<?php echo $user->firstName.' '.$user->lastName; ?>">
-           </div>
+           </a>
            <form class="textareaContainer">
               <textarea  id="postTextarea" placeholder="What's happening?" aria-label="What's happening?" autofocus></textarea>
               <div class="buttonsContainer">
@@ -38,7 +38,7 @@ $pageTitle="Home / Twitter";
            </form>
         </div>
         <section aria-label="Timeline:Your Home Timeline" class="postContainer">
-          <?php $loadFromTweet->tweets($user_id); ?>
+          <?php $loadFromTweet->tweets($user_id,10); ?>
         </section>
      </section>
      <aside role="complementary">
@@ -46,4 +46,5 @@ $pageTitle="Home / Twitter";
      </aside>
    </main>
 </section>
+<script src="<?php echo url_for("frontend/assets/js/fetchTweet.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/common.js"); ?>"></script>

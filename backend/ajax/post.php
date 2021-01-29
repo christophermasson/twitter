@@ -8,6 +8,6 @@ if(is_post_request()){
         $allowed_tags='<div><li><h2><h3><h1><ul><p><em><strong><br>';
         $statusText=strip_tags($_POST['onlyStatusText'],$allowed_tags);
         $lastId=$loadFromUser->create("tweets",array("status"=>$statusText,"tweetBy"=>$userid,"postedOn"=>date('Y-m-d H:i:s')));
-        $loadFromTweet->tweets($userid);
+        $loadFromTweet->tweets($userid,10);
     }
 }
