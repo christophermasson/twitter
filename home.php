@@ -47,7 +47,7 @@ $pageTitle="Home / Twitter";
                        <li role="option" aria-selected="true">
                           <div role="button" tabindex="0" data-focusable="true" class="getValue h-ment">#PHP</div>
                        </li> -->
-                       <li role="option" aria-selected="true">
+                       <!-- <li role="option" aria-selected="true">
                           <div role="button" tabindex="0" data-focusable="true" class="h-ment">
                              <div class="ment-w-container">
                                 <div class="profile-user-icon">
@@ -60,7 +60,7 @@ $pageTitle="Home / Twitter";
                                 </div>
                                 <div class="ment-profile-wrapper">
                                    <div class="ment-profile-pic">
-                                      <img src="<?php echo url_for('frontend/assets/images/profilePic.jpeg') ?>" alt="User FullName">
+                                      <img src="<?php //echo url_for('frontend/assets/images/profilePic.jpeg') ?>" alt="User FullName">
                                    </div>
                                    <div class="ment-profile-name">
                                       <div class="ment-user-fullName">
@@ -73,7 +73,7 @@ $pageTitle="Home / Twitter";
                                 </div>
                              </div>
                           </div>
-                       </li>
+                       </li> -->
                     </ul>
                  </div>
               </div>
@@ -96,4 +96,5 @@ $pageTitle="Home / Twitter";
    </main>
 </section>
 <script src="<?php echo url_for("frontend/assets/js/fetchTweet.js"); ?>"></script>
+<script src="<?php echo url_for("frontend/assets/js/hashtag.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/common.js"); ?>"></script>
