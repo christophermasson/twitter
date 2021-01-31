@@ -453,9 +453,12 @@ span.dot:hover svg.dot-icon{
 .post:hover{
     background-color: rgba(0,0,0,0.03);
 }
-.post-body div{
-    font-size:1.6rem;
-    line-height:1.65rem;
+.post-body div {
+    font-size: 1.5rem;
+    word-break: break-all;
+    max-width: 500px;
+    line-height: 2rem;
+    font-weight: 400;
 }
 .post-footer{
     display:flex;

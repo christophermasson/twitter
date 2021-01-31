@@ -70,6 +70,29 @@ class Tweet{
        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function getMention($mention){
+      $stmt=$this->pdo->prepare("SELECT * FROM `users` WHERE `username` LIKE :mention OR `firstName` LIKE :mention OR `lastName` LIKE :mention LIMIT 5");
+      $stmt->bindValue(":mention",$mention.'%');
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_OBJ);
+   }
+
+   public function addTrend($hashtag,$tweetId,$user_id){
+      preg_match_all("/#+([a-zA-Z0-9_]+)/i",$hashtag,$matches);
+      if($matches){
+         $result=array_values($matches[1]);
+      }
+
+      $sql="INSERT INTO `trends` (`hashtag`,`tweetID`,`user_id`,`createdOn`) VALUES (:hashtag,:tweetId,:userId,:dateOn)";
+ 
+      foreach($result as $trend){
+         if($stmt=$this->pdo->prepare($sql)){
+            $stmt->execute(array(':hashtag'=>$trend,':tweetId'=>$tweetId,':userId'=>$user_id,'dateOn'=>date('Y-m-d H:i:s')));
+         }
+      }
+
+   }
+
    
   
 }
