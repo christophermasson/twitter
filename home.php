@@ -60,7 +60,7 @@ $pageTitle="Home / Twitter";
                                 </div>
                                 <div class="ment-profile-wrapper">
                                    <div class="ment-profile-pic">
-                                      <img width="40px" height="40px" src="<?php echo url_for('frontend/assets/images/profilePic.jpeg') ?>" alt="User FullName">
+                                      <img src="<?php echo url_for('frontend/assets/images/profilePic.jpeg') ?>" alt="User FullName">
                                    </div>
                                    <div class="ment-profile-name">
                                       <div class="ment-user-fullName">
