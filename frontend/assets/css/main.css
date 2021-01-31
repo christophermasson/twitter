@@ -330,6 +330,17 @@ overflow-y:auto;
 top:4px;
 box-shadow:rgb(101 119 134/20%) 0px 0px 15px,rgb(101 119 134/15%) 0px 3px 1px;
 }
+.h-ment{
+    padding:1.5rem;
+    font-size:1.5rem;
+    font-weight:700;
+    color:rgb(15,20,25);
+    border-bottom:.1rem solid rgb(235,238,240);
+    cursor:pointer;
+}
+.hash-box li:hover div.h-ment{
+    background-color:rgb(247,249,250);
+}
 .postContainer .post{
     display:flex;
     flex-direction:column;
