@@ -34,6 +34,10 @@ $pageTitle="Home / Twitter";
               <textarea  id="postTextarea" placeholder="What's happening?" aria-label="What's happening?"></textarea>
               <div class="buttonsContainer">
                  <input type="submit" id="submitPostButton" disabled="true" role="button" value="POST">
+                 <div class="w-count-wrapper">
+                     <div id="count">200</div>
+                     <div class="vertical-pipe"></div>
+                 </div>
               </div>
            </form>
         </div>

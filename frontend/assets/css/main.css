@@ -11,6 +11,9 @@
     --elevation-lined:rgba(0,0,0,0.02) 0px 0px 2px inset;
     --elevation-raised:rgba(101,119,134,0.2) 0px 0px 15px, rgba(101,119,134,0.15) 0px 0px 3px 1px;
 }
+*{
+    outline-color:#8ED0F9;
+}
 section.wrapper {
     height: 100%;
     display: grid;
@@ -273,7 +276,12 @@ section.mainSectionContainer {
     font-size: 1.9rem;
     margin-bottom: 1rem;
 }
-
+/* ButtonContainer */
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
 input#submitPostButton {
     background: var(--blue);
     color: #fff;
@@ -281,6 +289,18 @@ input#submitPostButton {
     border-radius: 40px;
     padding: 7px var(--spacing);
     border: none;
+}
+.w-count-wrapper {
+    margin-right: 1rem;
+    font-size: 2rem;
+    font-weight: 400;
+    display: flex;
+}
+.vertical-pipe {
+    width: 1px;
+    height: 30px;
+    margin-left: 8px;
+    background-color: rgb(170,184,194);
 }
 #submitPostButton:disabled{
     cursor: not-allowed !important;
