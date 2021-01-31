@@ -1,5 +1,5 @@
 const modalHash=document.querySelector(".hash-box-wrapper");
-let submitButton=$("#submitPostButton");
+
 
 $(window).on("click",function(e){
     if(e.target==modalHash){
@@ -39,12 +39,10 @@ $("#postTextarea").keyup(e=>{
   }
   
   $("#count").text(max-content.length);
-  if(content.length > max){
+  if(content.length >= max){
     $("#count").css("color","#f00");
-    submitButton.prop("disabled",true);
   }else{
     $("#count").css("color","#000");
-    submitButton.prop("disabled",false);
   }
 
 })

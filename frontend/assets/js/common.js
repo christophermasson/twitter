@@ -33,6 +33,9 @@ $(document).on("keyup","#postTextarea",function(e){
     if(value == ""){
         submitButton.prop("disabled",true);
         return;
+    }else if(value.length >= 200){
+        submitButton.prop("disabled",true);
+        return;
     }
     
     submitButton.prop("disabled",false);
@@ -44,11 +47,13 @@ $("#submitPostButton").click(e=>{
     let submitButton=$("#submitPostButton");
     let textValue=$("#postTextarea").val();
     let userid=uid;
+    let max=200;
     
     if(textValue != "" && textValue != null){
         $.post("http://localhost/twitter/backend/ajax/post.php",{onlyStatusText:textValue,userid:userid},function(data){
             $(".postContainer").html(data);
             $("#postTextarea").val("");
+            $("#count").text(max);
             submitButton.prop("disabled",true);
         })
     }
