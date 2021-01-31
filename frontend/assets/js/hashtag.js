@@ -1,4 +1,5 @@
 const modalHash=document.querySelector(".hash-box-wrapper");
+let submitButton=$("#submitPostButton");
 
 $(window).on("click",function(e){
     if(e.target==modalHash){
@@ -22,9 +23,28 @@ $("#postTextarea").keyup(e=>{
       success:function(data){
         modalHash.style.display="block";
         $(".hash-box ul").html(data);
+        $(".hash-box li").click(function(){
+          let value=$.trim($(this).find('.getValue').text());
+          let oldContent=$("#postTextarea").val();
+          let newContent=oldContent.replace(regex,"");
+          $("#postTextarea").val(newContent+value+' ');
+          modalHash.style.display="none";
+          $("#postTextarea").focus();
+          $("#count").text(max-content.length);
+        })
       }
     })
   }else{
     modalHash.style.display="none";
   }
+  
+  $("#count").text(max-content.length);
+  if(content.length > max){
+    $("#count").css("color","#f00");
+    submitButton.prop("disabled",true);
+  }else{
+    $("#count").css("color","#000");
+    submitButton.prop("disabled",false);
+  }
+
 })

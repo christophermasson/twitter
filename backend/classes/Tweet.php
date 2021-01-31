@@ -62,4 +62,14 @@ class Tweet{
           </article>';
         }
     }
+
+    public function getTrendByHash($hashtag){
+       $stmt=$this->pdo->prepare("SELECT DISTINCT `hashtag` FROM `trends` WHERE `hashtag` LIKE :hashtag LIMIT 5");
+       $stmt->bindValue(":hashtag",$hashtag.'%');
+       $stmt->execute();
+       return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+   
+  
 }
