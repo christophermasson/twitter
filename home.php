@@ -32,6 +32,24 @@ $pageTitle="Home / Twitter";
            </a>
            <form class="textareaContainer">
               <textarea  id="postTextarea" placeholder="What's happening?" aria-label="What's happening?"></textarea>
+              <div class="hash-box-wrapper">
+                 <div class="hash-box" role="listbox" aria-multiselectable="false">
+                    <ul>
+                       <li role="option" aria-selected="true">
+                          <div role="button" tabindex="0" data-focusable="true" class="getValue h-ment">#PHP</div>
+                       </li>
+                       <li role="option" aria-selected="true">
+                          <div role="button" tabindex="0" data-focusable="true" class="getValue h-ment">#PHP</div>
+                       </li>
+                       <li role="option" aria-selected="true">
+                          <div role="button" tabindex="0" data-focusable="true" class="getValue h-ment">#PHP</div>
+                       </li>
+                       <li role="option" aria-selected="true">
+                          <div role="button" tabindex="0" data-focusable="true" class="getValue h-ment">#PHP</div>
+                       </li>
+                    </ul>
+                 </div>
+              </div>
               <div class="buttonsContainer">
                  <input type="submit" id="submitPostButton" disabled="true" role="button" value="POST">
                  <div class="w-count-wrapper">
