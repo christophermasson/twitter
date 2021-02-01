@@ -45,6 +45,9 @@ class TweetControls{
         $class="like-btn";
         $imageSrc='<i class="fa fa-heart-o"></i>';
         $action="likeTweet(this,$postId,$user_id,$postedBy)";
+        if($this->tweet->wasLikedBy($user_id,$postId)){
+            $imageSrc='<i class="fa fa-heart"></i>';
+        }
         return '<div class="postButtonContainer">
                 '.ButtonProvider::createLikeTweetButton($text,$imageSrc,$class,$action,$postId,$postedBy,$user_id).'
               </div>';

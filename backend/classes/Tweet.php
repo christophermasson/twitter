@@ -4,12 +4,12 @@ class Tweet{
 
     private $pdo;
     private $user;
-    private $tweetControls;
+   //  private $tweetControls;
 
     public function __construct(){
         $this->pdo=Database::instance();
         $this->user=new User;
-        $this->tweetControls=new TweetControls;
+      //   $this->tweetControls=new TweetControls;
     }
 
     public function tweets($user_id,$num){
@@ -19,7 +19,8 @@ class Tweet{
         $stmt->execute();
         $tweets=$stmt->fetchAll(PDO::FETCH_OBJ);
         foreach($tweets as $tweet){
-           $controls=$this->tweetControls->createControls($tweet->tweetID,$tweet->tweetBy,$user_id);
+           $tweetControls=new TweetControls;
+           $controls=$tweetControls->createControls($tweet->tweetID,$tweet->tweetBy,$user_id);
             echo '<article role="article" data-focusable="true" tabindex="0" class="post">
             <div class="mainContentContainer">
                <a href="'.url_for($tweet->username).'" role="link" class="userImageContainer">
@@ -84,6 +85,28 @@ class Tweet{
       if($data["count"] > 0){
          return $data["count"];
       }
+   }
+
+   public function likes($user_id,$postId){
+      if($this->wasLikedBy($user_id,$postId)){
+         //User has already liked
+         $this->user->delete('likes',array('likeBy'=>$user_id,'likeOn'=>$postId));
+         $result=array("likes"=>-1);
+         return json_encode($result);
+      }else{
+         //User has notliked
+          $this->user->create('likes',array('likeBy'=>$user_id,'likeOn'=>$postId));
+          $result=array("likes"=>1);
+          return json_encode($result);
+      }
+   }
+
+   public function wasLikedBy($user_id,$postId){
+      $stmt=$this->pdo->prepare("SELECT * FROM `likes` WHERE `likeBy`=:userId AND likeOn=:postId");
+      $stmt->bindParam(":userId",$user_id,PDO::PARAM_INT);
+      $stmt->bindParam(":postId",$postId,PDO::PARAM_INT);
+      $stmt->execute();
+      return $stmt->rowCount() > 0;
    }
 
    
