@@ -4,10 +4,12 @@ class Tweet{
 
     private $pdo;
     private $user;
+    private $tweetControls;
 
     public function __construct(){
         $this->pdo=Database::instance();
         $this->user=new User;
+        $this->tweetControls=new TweetControls;
     }
 
     public function tweets($user_id,$num){
@@ -17,6 +19,7 @@ class Tweet{
         $stmt->execute();
         $tweets=$stmt->fetchAll(PDO::FETCH_OBJ);
         foreach($tweets as $tweet){
+           $controls=$this->tweetControls->createControls($tweet->tweetID,$tweet->tweetBy,$user_id);
             echo '<article role="article" data-focusable="true" tabindex="0" class="post">
             <div class="mainContentContainer">
                <a href="'.url_for($tweet->username).'" role="link" class="userImageContainer">
@@ -36,7 +39,7 @@ class Tweet{
                   <div class="post-body">
                     <div>'.$tweet->status.'</div>
                    </div>
-                  '..'
+                  '.$controls.'
                </div>
             </div>
           </article>';
@@ -71,6 +74,16 @@ class Tweet{
          }
       }
 
+   }
+
+   public function getLikes($postId){
+      $stmt=$this->pdo->prepare("SELECT count(*) as `count` FROM `likes` WHERE `likeOn`=:tweetId");
+      $stmt->bindParam(":tweetId",$postId,PDO::PARAM_INT);
+      $stmt->execute();
+      $data=$stmt->fetch(PDO::FETCH_ASSOC);
+      if($data["count"] > 0){
+         return $data["count"];
+      }
    }
 
    

@@ -1,6 +1,12 @@
 <?php
 
 class TweetControls{
+    private $pdo,$tweet;
+
+    public function __construct(){
+        $this->pdo=Database::instance();
+        $this->tweet=new Tweet;
+    }
 
     public function createControls($postId,$postedBy,$user_id){
 
@@ -35,9 +41,10 @@ class TweetControls{
     }
 
     private function createLikeButton($postId,$postedBy,$user_id){
-        $text="";
+        $text=$this->tweet->getLikes($postId);
         $class="like-btn";
         $imageSrc='<i class="fa fa-heart-o"></i>';
+        $action="likeTweet(this,$postId,$user_id,$postedBy)";
         return '<div class="postButtonContainer">
                 '.ButtonProvider::createLikeTweetButton($text,$imageSrc,$class,$action,$postId,$postedBy,$user_id).'
               </div>';

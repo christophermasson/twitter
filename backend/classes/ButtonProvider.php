@@ -5,13 +5,13 @@ class ButtonProvider{
         return '<button class="'.$class.'" data-post="'.$postId.'" data-postedBy="'.$postedBy.'" data-user="'.$user_id.'">
           '.$imageSrc.'
         <span class="'.$countClassName.'">'.$text.'</span>
-    </button>'
+    </button>';
     }
 
     public static  function createLikeTweetButton($text,$imageSrc,$class,$action,$postId,$postedBy,$user_id){
         return '<button class="'.$class.'" onclick="'.$action.'" data-post="'.$postId.'" data-postedBy="'.$postedBy.'" data-user="'.$user_id.'">
           '.$imageSrc.'
         <span class="likesCounter">'.$text.'</span>
-    </button>'
+    </button>';
     }
 }

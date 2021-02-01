@@ -23,6 +23,7 @@ spl_autoload_register(function($class){
 
 
 $account=new Account;
+$tweetControls=new TweetControls;
 $loadFromUser=new User;
 $verify=new Verify;
 $loadFromTweet=new Tweet;
