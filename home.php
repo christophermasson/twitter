@@ -79,6 +79,7 @@ $pageTitle="Home / Twitter";
    </main>
 </section>
 <script src="<?php echo url_for("frontend/assets/js/fetchTweet.js"); ?>"></script>
+<script src="<?php echo url_for("frontend/assets/js/retweet.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/likeTweet.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/hashtag.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/common.js"); ?>"></script>

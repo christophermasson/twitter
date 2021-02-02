@@ -504,3 +504,45 @@ span.likesCounter {
 .fa-heart{
     color:#E33B67;
 }
+/* Retweet Style */
+.retweet-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0);
+    display:none;
+}
+.retweet-wrapper{
+    position:absolute;
+    right:653.844px;
+    top:295.938px;
+    max-width:calc(295px);
+    width:150px;
+    background-color:rgba(255,255,255,1);
+    overflow:hidden;
+    border-radius:4px;
+    box-shadow:rgb(101 119 134/20%) 0px 0px 15px,rgb(101 119 134/15%) 0px 0px 3px 1px;
+}
+.menuItem{
+    display:flex;
+    align-items:center;
+    padding:var(--spacing);
+    cursor:pointer;
+    transition:background-color 0.3s;
+}
+svg.r-p{
+    margin-right:1rem;
+    fill:rgb(91,112,131);
+}
+.retweet-text{
+    color:rgb(15,20,25);
+    font-size:13px;
+    font-weight:400;
+}
+.menuItem:hover{
+background-color:rgba(0,0,0,0.03);
+}
+/* End of retweet style */
