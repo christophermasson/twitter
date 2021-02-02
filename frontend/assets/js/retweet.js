@@ -5,7 +5,7 @@ $(function(){
         e.preventDefault();
         
         retweetModal.style.display="block";
-        
+    
         
     })
     window.onclick=function(event){
