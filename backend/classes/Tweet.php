@@ -109,6 +109,15 @@ class Tweet{
       return $stmt->rowCount() > 0;
    }
 
+   public function getRetweet($postId){
+      $stmt=$this->pdo->prepare("SELECT count(*) as `count` FROM `retweet` WHERE `retweetFrom`=:tweetId");
+      $stmt->bindParam(":tweetId",$postId,PDO::PARAM_INT);
+      $stmt->execute();
+      $data=$stmt->fetch(PDO::FETCH_ASSOC);
+      if($data["count"] > 0){
+         return $data["count"];
+      }
+   }
    
   
 }

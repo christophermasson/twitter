@@ -11,4 +11,8 @@ $(function(){
         if(event.target==retweetModal)
         retweetModal.style.display="none";
     }
+
+    $(document).on("click",".retweet-it",function(){
+        alert("Retweet button was pressed!");
+    })
 })
