@@ -24,24 +24,33 @@ $(function(){
         // alert("Retweet button was pressed!");
         $.post("http://localhost/twitter/backend/ajax/retweet.php",{tweetID:post_id,userId:userId,status:retweetText},function(data){
             // alert(data);
-            console.log(data);
+            // console.log(data);
             // let likeButton=$(button);
             // likeButton.addClass("like-active");
-            // let result=JSON.parse(data);
-            // updateLikesValue(likeButton.find(".likesCounter"),result.likes);
+            let result=JSON.parse(data);
+            updateRetweetValue($counter,result.retweets);
 
-            // if(result.likes <0){
-            //     likeButton.removeClass("like-active");
-            //     likeButton.find(".fa-heart").addClass("fa-heart-o");
-            //     likeButton.find(".fa-heart-o").removeClass("fa-heart");
-            // }else{
-            //     likeButton.addClass("like-active");
-            //     likeButton.find(".fa-heart-o").addClass("fa-heart");
-            //     likeButton.find(".fa-heart").removeClass("fa-heart-o");
-            // }
+            if(result.retweets <0){
+               let text=$("#retweet-it retweet-text span").text("Retweet");
+               $("#retweet-it").removeClass("retweeted-it").addClass("retweet-it");
+               retweetModal.style.display="none";
+
+            }else{
+                console.log("ONe");
+                let text=$("#retweet-it retweet-text span").text("Undo Retweet");
+                $("#retweet-it").removeClass("retweet-it").addClass("retweeted-it");
+                retweetModal.style.display="none";
+               
+            }
 
 
             //   console.log(result);
             })
     })
+
+    
+function updateRetweetValue(element,num){
+    let retweetCountVal=element.text() || "0";
+    element.text(parseInt(retweetCountVal) + parseInt(num));
+}
 })
