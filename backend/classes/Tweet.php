@@ -118,28 +118,5 @@ class Tweet{
          return $data["count"];
       }
    }
-   
-   public function retweetCount($user_id,$postId,$status){
-      if($this->wasRetweetBy($user_id,$postId)){
-         //User has already liked
-         $this->user->delete('retweet',array('retweetBy'=>$user_id,'retweetFrom'=>$postId));
-         $result=array("retweets"=>-1);
-         return json_encode($result);
-      }else{
-         //User has notliked
-          $this->user->create('retweet',array('retweetBy'=>$user_id,'retweetFrom'=>$postId,'status'=>$status));
-          $result=array("retweets"=>1);
-          return json_encode($result);
-      }
-   }
-
-   public function wasRetweetBy($user_id,$postId){
-      $stmt=$this->pdo->prepare("SELECT * FROM `retweet` WHERE `retweetBy`=:userId AND retweetFrom=:postId");
-      $stmt->bindParam(":userId",$user_id,PDO::PARAM_INT);
-      $stmt->bindParam(":postId",$postId,PDO::PARAM_INT);
-      $stmt->execute();
-      return $stmt->rowCount() > 0;
-   }
-
   
 }
