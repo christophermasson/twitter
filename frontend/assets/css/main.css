@@ -482,6 +482,9 @@ span.dot:hover svg.dot-icon{
 span.retweetsCount {
     color: rgb(23,191,99);
 }
+.retweeted-icon svg{
+    fill:rgb(23,191,99);
+}
 span.likesCounter {
     color: rgb(224,36,94);
 }

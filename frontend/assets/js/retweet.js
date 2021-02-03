@@ -32,9 +32,11 @@ $(function(){
         
                 if(result.retweets <0){
                    $(".retweet-it .retweet-text span").text("Retweet");
+                   $button.removeClass("retweeted-icon");
                    retweetModal.style.display="none";
                 }else{
                     $(".retweet-it .retweet-text span").text("Undo Retweet");
+                    $button.addClass("retweeted-icon");
                     retweetModal.style.display="none";
                 }
         
