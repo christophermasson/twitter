@@ -1,16 +1,15 @@
 $(function(){
     const retweetBtn=document.querySelector(".retweet");
     const retweetModal=document.querySelector(".retweet-container");
-    retweetBtn.addEventListener("click",function(e){
+
+    $(document).on("click",".retweet",function(e){
         e.preventDefault();
-        
-        retweetModal.style.display="block";
+       retweetModal.style.display="block";
         $postId=$(this).data('post');
         $uid=$(this).data('user');
         $counter=$(this).find('.retweetsCount');
         $button=$(this);
     
-        
     })
     window.onclick=function(event){
         if(event.target==retweetModal)
