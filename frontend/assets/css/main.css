@@ -550,4 +550,22 @@ svg.r-p{
 .menuItem:hover{
 background-color:rgba(0,0,0,0.03);
 }
+.retweet-header {
+    display: flex;
+    align-items: center;
+}
+.retweet-image {
+    margin-right: 1rem;
+}
+.retweet-image svg{
+    fill: rgb(91,112,131);
+}
+a.retweet-link {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: rgb(91,112,131);
+}
+a.retweet-link:hover{
+    text-decoration: underline;
+}
 /* End of retweet style */
