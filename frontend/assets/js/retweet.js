@@ -32,32 +32,40 @@ $(function(){
         retweetModal.style.display="none";
     }
 
-    $(document).on("click",".retweet-it",function(){
+    $(document).on("click",".retweet-it,.retweeted-it",function(){
         let postId=$button.data('post');
         let userId=$button.data('user');
         let retweetText="";
-        // console.log(postId,userId);
-        // alert("Retweet button was pressed!");
+        let wasRetweeted=$(this).hasClass("retweeted-it");
+        if(wasRetweeted){
             $.post("http://localhost/twitter/backend/ajax/retweet.php",{tweetID:postId,retweetBy:userId,status:retweetText},function(data){
-            //  console.log(data);    
-            // let likeButton=$(button);
-                // likeButton.addClass("like-active");
                 let result=JSON.parse(data);
                 updateRetweetValue($counter,result.retweets);
         
                 if(result.retweets <0){
-                   $(".retweet-it .retweet-text span").text("Retweet");
+                   $(".menuItem .retweet-text .retweet-no-quote").text("Retweet");
                    $button.removeClass("retweeted-icon").addClass("retweet");
+                   $(".retweet-it").removeClass("retweeted-it");
                    retweetModal.style.display="none";
-                }else{
-                    $(".retweet-it .retweet-text span").text("Undo Retweet");
-                    $button.addClass("retweeted-icon").removeClass('retweet');
-                    retweetModal.style.display="none";
                 }
         
         
-            //   console.log(result);
             })
+        }else{
+            $.post("http://localhost/twitter/backend/ajax/retweet.php",{tweetID:postId,retweetBy:userId,status:retweetText},function(data){
+                    let result=JSON.parse(data);
+                    updateRetweetValue($counter,result.retweets);
+            
+                    if(result.retweets >0){
+                        $(".menuItem .retweet-text .retweet-no-quote").text("Undo Retweet");
+                        $button.addClass("retweeted-icon").removeClass('retweet');
+                        $(".retweet-it").addClass("retweeted-it").removeClass("retweet-it");
+                        retweetModal.style.display="none";
+                    }
+            
+                })
+        }
+        
     })
 
     function updateRetweetValue(element,num){
@@ -65,4 +73,7 @@ $(function(){
         element.text(parseInt(retweetCountVal) + parseInt(num));
     }
 
+    $(document).on("click",".retweet",function(){
+        
+    })
 })
