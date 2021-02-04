@@ -73,7 +73,9 @@ $(function(){
         element.text(parseInt(retweetCountVal) + parseInt(num));
     }
 
-    $(document).on("click",".retweet",function(){
-        
+    $(document).on("click",".retweet-it",function(){
+        $.post("http://localhost/twitter/backend/ajax/retweet.php",{retweetPostId:$postId,retweetBy:$uid},function(data){
+            $(".postContainer").html(data);
+        })
     })
 })

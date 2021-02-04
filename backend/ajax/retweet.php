@@ -49,4 +49,17 @@ if(is_post_request()){
         // echo $loadFromTweet->retweetCount($retweetBy,$tweetID,$status);
 
     }
+
+    if(isset($_POST['retweetPostId']) && !empty($_POST['retweetPostId'])){
+        $retweetBy=h($_POST['retweetBy']);
+        $tweetID=h($_POST['retweetPostId']);
+        // echo $tweetID;
+        $retweetData=$loadFromTweet->checkRetweet($retweetBy,$tweetID);
+        if(!empty($retweetData)){
+            $loadFromTweet->tweets($retweetBy,10);
+        }
+
+        // echo $loadFromTweet->retweetCount($retweetBy,$tweetID,$status);
+
+    }
 }
