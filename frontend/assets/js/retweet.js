@@ -2,13 +2,29 @@ $(function(){
     const retweetBtn=document.querySelector(".retweet");
     const retweetModal=document.querySelector(".retweet-container");
 
-    $(document).on("click",".retweet",function(e){
+    $(document).on("click",".retweet,.retweeted-icon",function(e){
         e.preventDefault();
-       retweetModal.style.display="block";
         $postId=$(this).data('post');
         $uid=$(this).data('user');
         $counter=$(this).find('.retweetsCount');
         $button=$(this);
+        let wasRetweeted=$(this).hasClass("retweeted-icon");
+        if(wasRetweeted){
+            
+            $.post("http://localhost/twitter/backend/ajax/retweet.php",{retweetId:$postId,retweetBy:$uid},function(data){
+                retweetModal.style.display="block";
+                $(".retweet-container").html(data);
+            
+            
+            })
+        }else{
+            $.post("http://localhost/twitter/backend/ajax/retweet.php",{retweetId:$postId,retweetBy:$uid},function(data){
+                retweetModal.style.display="block";
+                $(".retweet-container").html(data);
+            
+            
+            })
+        }
     
     })
     window.onclick=function(event){
@@ -31,11 +47,11 @@ $(function(){
         
                 if(result.retweets <0){
                    $(".retweet-it .retweet-text span").text("Retweet");
-                   $button.removeClass("retweeted-icon");
+                   $button.removeClass("retweeted-icon").addClass("retweet");
                    retweetModal.style.display="none";
                 }else{
                     $(".retweet-it .retweet-text span").text("Undo Retweet");
-                    $button.addClass("retweeted-icon");
+                    $button.addClass("retweeted-icon").removeClass('retweet');
                     retweetModal.style.display="none";
                 }
         
