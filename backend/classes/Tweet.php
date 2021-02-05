@@ -165,5 +165,37 @@ class Tweet{
    $stmt->execute();
    return $stmt->fetch(PDO::FETCH_OBJ);
 }
+  public function getComments($postId){
+      $stmt=$this->pdo->prepare("SELECT count(*) as `count` FROM `comment` WHERE `commentOn`=:tweetId");
+      $stmt->bindParam(":tweetId",$postId,PDO::PARAM_INT);
+      $stmt->execute();
+      $data=$stmt->fetch(PDO::FETCH_ASSOC);
+      if($data["count"] > 0){
+         return $data["count"];
+      }
+  }
+
+  public function comment($commentBy,$commentOn,$comment){
+      if($this->wasCommentBy($commentBy,$commentOn)){
+         //User has already liked
+         $this->user->delete('comment',array('commentBy'=>$commentBy,'commentOn'=>$commentOn));
+         $result=array("comments"=>-1);
+         return json_encode($result);
+      }else{
+         //User has notliked
+         $this->user->create('comment',array('commentBy'=>$commentBy,'commentOn'=>$commentOn,'comment'=>$comment,'commentAt'=>date('Y-m-d H:i:s')));
+         $result=array("comments"=>1);
+         return json_encode($result);
+      }
+  }
+
+  public function wasCommentBy($commentBy,$commentOn){
+   $stmt=$this->pdo->prepare("SELECT * FROM `comment` WHERE `commentBy`=:userId AND commentOn=:postId");
+   $stmt->bindParam(":userId",$commentBy,PDO::PARAM_INT);
+   $stmt->bindParam(":postId",$commentOn,PDO::PARAM_INT);
+   $stmt->execute();
+   return $stmt->rowCount() > 0;
+  }
+
   
 }

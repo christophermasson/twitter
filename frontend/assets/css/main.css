@@ -568,6 +568,10 @@ a.retweet-link {
 a.retweet-link:hover{
     text-decoration: underline;
 }
+.replyCountColor{
+    fill:#46B1F3;
+    color:#46B1F3;
+}
 /* End of retweet style */
 /* Reply Modal */
 

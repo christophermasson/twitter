@@ -8,23 +8,17 @@ $(function(){
         $postedBy=$(this).data('postedby');
         $button=$(this);
         $counter=$(this).find('.replyCount');
-        // alert($postedBy);
+       
         modal.style.display="block";
 
         $.post("http://localhost/twitter/backend/ajax/reply.php",{tweetID:$postId,tweetBy:$postedBy,userId:$userId},function(data){
             $(".reply-wrapper").html(data);
-        // alert(data);
-      
-          //   console.log(result);
+        
           })
     
     
     })
-    // window.onclick=function(event){
-    //     if(event.target==modal)
-    //     modal.style.display="none";
-    // }
-
+  
     $(document).on("click",".close",function(){
         modal.style.display="none";
     });
@@ -34,11 +28,38 @@ $(function(){
         }
     })
   
-
-    // function updateRetweetValue(element,num){
-    //     let retweetCountVal=element.text() || "0";
-    //     element.text(parseInt(retweetCountVal) + parseInt(num));
-    // }
+   $(document).on("click","#replyBtn",function(e){
+       e.preventDefault();
+       let userId=$button.data('user');
+       let postId=$button.data('post');
+       let counter=$button.find('.replyCount');
+       let textValue=$("#replyInput").val().trim();
+       if(textValue != "" && textValue != null){
+        $.post("http://localhost/twitter/backend/ajax/reply.php",{commentOn:postId,commentBy:userId,comment:textValue},function(data){
+            
+            $(".reply-wrapper").hide();
+            let result=JSON.parse(data);
+            updateRetweetValue(counter,result.comments);
+      
+            if(result.comments <0){
+               $button.removeClass('commented').addClass("replyModal");
+               $button.removeClass("replyCountColor");
+               counter.removeClass('replyCountColor');
+            }else{
+                $button.addClass('commented').removeClass("replyModal");
+                $button.addClass("replyCountColor");
+                counter.addClass('replyCountColor');
+            }
+      
+      
+          })
+       }
+    
+   })
+    function updateRetweetValue(element,num){
+        let retweetCountVal=element.text() || "0";
+        element.text(parseInt(retweetCountVal) + parseInt(num));
+    }
 
    
 })
