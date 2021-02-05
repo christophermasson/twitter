@@ -1,21 +1,37 @@
 $(function(){
     var modal=document.querySelector(".reply-wrapper");
 
-    $(document).on("click",".replyModal",function(e){
+    $(document).on("click",".replyModal,.commented",function(e){
         e.preventDefault();
         $postId=$(this).data('post');
         $userId=$(this).data('user');
         $postedBy=$(this).data('postedby');
         $button=$(this);
         $counter=$(this).find('.replyCount');
-       
-        modal.style.display="block";
+        let wasCommented=$button.hasClass("commented");
+        if(wasCommented){
+            $.post("http://localhost/twitter/backend/ajax/reply.php",{delCommentOn:$postId,commentBy:$userId},function(data){
+               
+                let result=JSON.parse(data);
+                updateRetweetValue($counter,result.delComment);
+          
+                if(result.delComment <0){
+                   $button.removeClass('commented').addClass("replyModal");
+                   $button.removeClass("replyCountColor");
+                   $counter.removeClass('replyCountColor');
+                }
+          
+              })
+        }else{
+            modal.style.display="block";
 
-        $.post("http://localhost/twitter/backend/ajax/reply.php",{tweetID:$postId,tweetBy:$postedBy,userId:$userId},function(data){
-            $(".reply-wrapper").html(data);
+            $.post("http://localhost/twitter/backend/ajax/reply.php",{tweetID:$postId,tweetBy:$postedBy,userId:$userId},function(data){
+                $(".reply-wrapper").html(data);
+            
+              })
         
-          })
-    
+        }
+       
     
     })
   

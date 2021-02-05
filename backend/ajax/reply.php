@@ -76,6 +76,15 @@ if(isset($_POST['comment']) && !empty($_POST['comment'])){
 }
 
 
+if(isset($_POST['delCommentOn']) && !empty($_POST['delCommentOn'])){
+   $commentBy=h($_POST['commentBy']);
+   $commentOn=h($_POST['delCommentOn']);
+  
+
+   echo $loadFromTweet->delComment($commentBy,$commentOn);
+
+}
+
 
 }
 

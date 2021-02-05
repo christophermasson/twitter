@@ -197,5 +197,13 @@ class Tweet{
    return $stmt->rowCount() > 0;
   }
 
+  public function delComment($commentBy,$commentOn){
+      if($this->wasCommentBy($commentBy,$commentOn)){
+         //User has already liked
+         $this->user->delete('comment',array('commentBy'=>$commentBy,'commentOn'=>$commentOn));
+         $result=array("delComment"=>-1);
+         return json_encode($result);
+      }
+  }
   
 }
