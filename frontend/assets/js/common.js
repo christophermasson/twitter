@@ -24,11 +24,14 @@ window.onclick=function(event){
     modal.style.display="none";
 }
 
-$(document).on("keyup","#postTextarea",function(e){
+$(document).on("keyup","#postTextarea,#replyInput",function(e){
     e.preventDefault();
     let textbox=$(e.target);
     let value=textbox.val().trim();
-    let submitButton=$("#submitPostButton");
+    let isReplyModal=textbox.parents(".reply-wrapper").length==1;
+
+    let submitButton=isReplyModal ? $("#replyBtn") : $("#submitPostButton"); 
+    // let submitButton=$("#submitPostButton");
 
     if(value == ""){
         submitButton.prop("disabled",true);

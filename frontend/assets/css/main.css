@@ -591,7 +591,7 @@ a.retweet-link:hover{
     transform: translate(-50%,-50%);
     background-color: #fff;
     width: 600px;
-    height: 300px;
+    height: 320px;
     border-top-left-radius: .4rem;
     border-top-right-radius: .4rem;
     box-shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
@@ -713,6 +713,7 @@ button#replyBtn {
     background-color: rgb(29,161,242);
     border:none;
     border-radius: var(--corner-radius-full);
+    cursor: pointer;
 }
 #replyBtn:disabled{
     cursor:not-allowed !important;

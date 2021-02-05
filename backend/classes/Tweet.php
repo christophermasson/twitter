@@ -157,5 +157,13 @@ class Tweet{
   public function checkRetweet($user_id,$tweetID){
    return $this->user->get("retweet",["*"],array("retweetBy"=>$user_id,"retweetFrom"=>$tweetID));
   }
+
+  public function getModalTweetData($tweetID,$tweetBy){
+   $stmt=$this->pdo->prepare("SELECT * FROM `tweets` LEFT JOIN `users` ON users.user_id=tweets.tweetBy WHERE `tweetBy`=:tweetBy AND tweetID=:tweetID");
+   $stmt->bindParam(":tweetBy",$tweetBy,PDO::PARAM_INT);
+   $stmt->bindParam(":tweetID",$tweetID,PDO::PARAM_INT);
+   $stmt->execute();
+   return $stmt->fetch(PDO::FETCH_OBJ);
+}
   
 }
