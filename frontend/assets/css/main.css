@@ -724,3 +724,120 @@ button#replyBtn {
     background-color: var(--blue-50-a1);
 }
 /* End of reply Modal */
+/* Delete Modal */
+.d-wrapper-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0);
+    display:none;
+}
+.d-wrapper {
+    position: absolute;
+    top: 44%;
+    left: 69%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    box-shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
+    width: 193.69px;
+    height: 125px;
+    border-radius: 4px;
+}
+.d-content{
+    display:flex;
+    align-items:center;
+    padding:2rem;
+    cursor:pointer;
+    overflow:hidden;
+}
+.d-content:hover{
+    background-color:rgba(0,0,0,0.03);
+}
+.d-image{
+    margin-right:1rem;
+}
+svg.del-icon{
+    fill:rgb(224,36,94);
+}
+span.d-text{
+    font-size:1.5rem;
+    font-weight:400;
+}
+.del-post-wrapper-container{
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.4);
+    display:none;
+}
+.del-post-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
+    background-color: #fff;
+    width: 465px;
+    height: 250px;
+    max-height: 100%;
+    max-width: 600px;
+    overflow: hidden;
+    border-radius: 16px;
+}
+.del-post-content {
+    width: 320px;
+    height: 229px;
+    margin: 0 auto;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+}
+h2.del-post-content-header {
+    margin-bottom: 16px;
+    font-size: 19px;
+    font-weight: 700;
+    text-align: center;
+    color: rgb(15,20,25);
+}
+.del-post-content p {
+    text-align: center;
+    font-size: 15px;
+    line-height:1.7;
+    font-weight:400;
+    margin-bottom:20px;
+    color:rgb(91,112,131);
+}
+.del-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+button.del-btn{
+    border:none;
+    padding:2rem;
+    border-radius:var(--corner-radius-full);
+    cursor:pointer;
+    font-size:1.6rem;
+}
+button#cancel{
+    color:rgb(15,20,25);
+    transition: background-color 0.3s;
+}
+button#cancel:hover{
+    background-color: rgb(212,214,216);
+}
+button#delete-post-btn{
+    background-color:rgb(224,36,94);
+    color:#fff;
+    transition: background-color 0.3s;
+}
+button#delete-post-btn:hover{
+    background-color: rgb(202,32,85);
+}
+/* End of Delete Modal */
