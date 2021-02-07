@@ -844,17 +844,17 @@ button#delete-post-btn:hover{
 /* Profile Style */
 .go-back-arrow{
     border-radius:var(--corner-radius-full);
+    cursor:pointer;
     min-height:39px;
     min-width:39px;
-    margin-right:3rem;
     border:.1rem solid rgba(0,0,0,0);
     background-color:rgba(0,0,0,0);
-    cursor:pointer;
+    margin-right:3rem;
 }
 .color-blue{
     fill:var(--blue);
     width:3.5em;
-    height:3.5em;
+    height:3.5rem;
 }
 .go-back-arrow:hover{
     background-color:rgba(29,161,242,0.1);
@@ -863,8 +863,8 @@ button#delete-post-btn:hover{
     flex:1;
 }
 .header-top-pro .tweet-no{
-    color:rgb(91,112,131);
     font-size:13px;
+    color:rgb(91,112,131);
     line-height:calc(19.6875px);
 }
 /* End of profile style */

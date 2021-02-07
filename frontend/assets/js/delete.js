@@ -30,9 +30,12 @@ $(function(){
     $(document).on("click","#delete-post-btn",function(){
         
         $.post('http://localhost/twitter/backend/ajax/deletePost.php',{postId:$postId,userId:$userId,tweetBy:$tweetBy},function(data){
-            //     $(".postContainer").html(data);
+           
+            deleteModal.style.display="none";
+            modal.style.display="none";
+            $(".postContainer").html(data);
             // alert(data);
-            location.reload(true);
+            // location.reload(true);
             // })
     })
     })

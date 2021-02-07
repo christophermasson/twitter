@@ -12,7 +12,7 @@ if(is_post_request()){
             $loadFromUser->delete("tweets",["tweetBy"=>$userId,"tweetID"=>$postId]);
         }
 
-        // echo $loadFromTweet->likes($likeBy,$tweetID);
+      $loadFromTweet->tweets($userId,10);
 
     }
 }

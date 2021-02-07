@@ -206,14 +206,13 @@ class Tweet{
       }
   }
 
-  public function countTweets($profileId){
-      $stmt=$this->pdo->prepare("SELECT COUNT('tweetID') AS `totalTweets` FROM `tweets` WHERE `tweetBy`=:tweetId");
+  public function tweetCounts($profileId){
+      $stmt=$this->pdo->prepare("SELECT count('tweetID') as `tweetCounts` FROM `tweets` WHERE `tweetBy`=:tweetId");
       $stmt->bindParam(":tweetId",$profileId,PDO::PARAM_INT);
       $stmt->execute();
-      $count=$stmt->fetch(PDO::FETCH_ASSOC);
-      if($count > 0){
-         // return $count->totalTweets;
-         return $count['totalTweets'];
+      $data=$stmt->fetch(PDO::FETCH_ASSOC);
+      if($data["tweetCounts"] > 0){
+         return $data["tweetCounts"];
       }
   }
   
