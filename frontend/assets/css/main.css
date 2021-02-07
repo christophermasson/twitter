@@ -841,3 +841,30 @@ button#delete-post-btn:hover{
     background-color: rgb(202,32,85);
 }
 /* End of Delete Modal */
+/* Profile Style */
+.go-back-arrow{
+    border-radius:var(--corner-radius-full);
+    min-height:39px;
+    min-width:39px;
+    margin-right:3rem;
+    border:.1rem solid rgba(0,0,0,0);
+    background-color:rgba(0,0,0,0);
+    cursor:pointer;
+}
+.color-blue{
+    fill:var(--blue);
+    width:3.5em;
+    height:3.5em;
+}
+.go-back-arrow:hover{
+    background-color:rgba(29,161,242,0.1);
+}
+.header-top-pro{
+    flex:1;
+}
+.header-top-pro .tweet-no{
+    color:rgb(91,112,131);
+    font-size:13px;
+    line-height:calc(19.6875px);
+}
+/* End of profile style */
