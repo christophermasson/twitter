@@ -25,7 +25,7 @@ $user=$loadFromUser->userData($user_id);
 $profileData=$loadFromUser->userData($profileId);
 $date_joined=strtotime($profileData->signUpDate);
 
-$pageTitle=$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData->username.') / Twitter';
+$pageTitle='Tweets with replies by '.$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData->username.') / Twitter';
 
 ?>
 <?php require_once 'backend/shared/header.php'; ?>
@@ -78,13 +78,13 @@ $pageTitle=$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData-
            </div>
         </section>
         <div class="tabsContainer">
-          <?php echo $loadFromTweet->createTab('Posts',url_for($profileData->username),true); ?>
-          <?php echo $loadFromTweet->createTab('Replies',url_for($profileData->username.'/replies'),false); ?>
+          <?php echo $loadFromTweet->createTab('Posts',url_for($profileData->username),false); ?>
+          <?php echo $loadFromTweet->createTab('Replies',url_for($profileData->username.'/replies'),true); ?>
          
         </div>
         
-        <section aria-label="Timeline:Your Profile Timeline" class="profilePostsContainer">
-          <?php $loadFromTweet->profileTweet($profileId,10); ?>
+        <section aria-label="Timeline:Your Profile Replies Timeline" class="repliesPostsContainer">
+          <?php $loadFromTweet->repliesTweet($profileId,10); ?>
         </section>
         <div class="reply-wrapper">
          

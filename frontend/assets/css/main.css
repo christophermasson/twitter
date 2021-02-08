@@ -392,7 +392,7 @@ align-items:center;
     font-weight:400;
     color:rgb(91,112,131);
 }
-.postContainer .post{
+.postContainer .post,.profilePostsContainer .post,.repliesPostsContainer .post{
     display:flex;
     flex-direction:column;
     padding:var(--spacing);
@@ -400,7 +400,7 @@ align-items:center;
     border-bottom:.1rem solid var(--gray);
     transition: background-color 0.3s;
 }
-.postContainer .mainContentContainer{
+.postContainer .mainContentContainer,.profilePostsContainer .mainContentContainer,.repliesPostsContainer .mainContentContainer{
     display:flex;
     flex:1;
 }
@@ -427,7 +427,7 @@ a.displayName{
 a.displayName:hover{
     text-decoration: underline;
 }
-.postContainer .username,.postContainer .date{
+.postContainer .username,.postContainer .date,.profilePostsContainer .username,.profilePostsContainer .date,.repliesPostsContainer .username,.repliesPostsContainer .date{
     font-size:1.5rem;
     font-weight:600;
     color:var(--grayText);
@@ -981,13 +981,16 @@ button.edit-profile-btn:hover{
     font-weight: bold;
     color: var(--grayText);
 }
-.tab.active{
-    color:var(--blue) !important;
-    border-bottom:.2rem solid var(--blue) !important;
-}
+
 .tabsContainer .tab span{
     font-size:2rem;
     color:var(--grayText);
+}
+.tab.active{
+    border-bottom:.2rem solid var(--blue) !important;
+}
+.tab.active span{
+    color:var(--blue) !important;
 }
 .tab:hover{
     color:var(--blue);
