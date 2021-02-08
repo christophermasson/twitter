@@ -215,5 +215,12 @@ class Tweet{
          return $data["tweetCounts"];
       }
   }
+
+  public function createTab($name,$href,$isSelected){
+     $className=$isSelected ? "tab active":"tab";
+     return "<a href='$href' class='$className'>
+          <span>$name</span>
+       </a>";
+  }
   
 }

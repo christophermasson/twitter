@@ -13,16 +13,26 @@ $(function(){
 
 const btn=document.querySelector(".w-header-container");
 const modal=document.querySelector("#myLogoutModal");
-btn.addEventListener("click",function(e){
-    e.preventDefault();
+// btn.addEventListener("click",function(e){
+//     e.preventDefault();
     
+//     modal.style.display="block";
+    
+// })
+$(document).on("click",".w-header-container",function(){
+        
     modal.style.display="block";
-    
 })
-window.onclick=function(event){
-    if(event.target==modal)
-    modal.style.display="none";
-}
+
+// window.onclick=function(event){
+//     if(event.target==modal)
+//     modal.style.display="none";
+// }
+$(window).on("click",function(e){
+    if(e.target==modal){
+        modal.style.display="none";
+    }
+})
 
 $(document).on("keyup","#postTextarea,#replyInput",function(e){
     e.preventDefault();
