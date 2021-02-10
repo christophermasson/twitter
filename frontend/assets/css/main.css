@@ -1046,6 +1046,56 @@ svg.p-btn-icon {
     border-top-left-radius:0.4rem;
     background-color:rgba(255,255,255,1);
 }
+.modal-body__topcard{
+    width:100%;
+    position:relative;
+    font-size:2rem;
+    padding:2rem;
+}
+.modal-body__topcard-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin:3rem 0;
+}
+.edit-profile__topcard-wrapper{
+    width:360px;
+}
+.edit-profile__topcard-wrapper img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:var(--corner-radius-full);
+}
+.topcard-btn-icon{
+    position:absolute;
+    cursor:pointer;
+}
+#camera-small{
+    width:5rem;
+    height:5rem;
+}
+input.fileInputPhoto{
+    position:absolute;
+    top:0;
+    right:0;
+    height:100%;
+    width:0;
+    left:0;
+    bottom:0;
+    opacity:0;
+    font-size:1px;
+    cursor:pointer;
+}
+.modal-pic input{
+    flex:1;
+    padding:1.5rem;
+    font-size:1.9rem;
+    font-weight:400;
+    color:rgb(15,20,25);
+    line-height:1.3125;
+    border:none;
+}
 .a-modal-site-logo-wrapper{
     font-size:3rem;
     color:#1DA1F5;

@@ -60,7 +60,7 @@ $pageTitle=$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData-
         </div>
         <div class="modal-pic" id="modal-pic">
            <div class="artdeco-modal-pic" role="dialog" aria-labelledby="profile-topcard-background-image-header">
-              <div class="art-pic-step" aria-modal="true">
+              <div class="art-pic-step" aria-modal="true" style="display:none;">
                  <div class="header__topcard">
                     <div class="a-modal-site-logo-wrapper">
                        <i class="fa fa-twitter"></i>
