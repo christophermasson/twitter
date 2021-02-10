@@ -58,6 +58,27 @@ $pageTitle=$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData-
         <div class="reply-wrapper">
          
         </div>
+        <div class="modal-pic" id="modal-pic">
+           <div class="artdeco-modal-pic" role="dialog" aria-labelledby="profile-topcard-background-image-header">
+              <div class="art-pic-step" aria-modal="true">
+                 <div class="header__topcard">
+                    <div class="a-modal-site-logo-wrapper">
+                       <i class="fa fa-twitter"></i>
+                    </div>
+                    <div class="p-btn" id="a-modal-skip">
+                       Skip for now
+                    </div>
+                 </div>
+                 <div class="modal-body__topcard">
+                    <h3>Pick a profile picture</h3>
+                    <p>Have a favorite selfie? Upload it now.</p>
+                    <div class="modal-body__topcard-container">
+                       
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
         <div class="d-wrapper-container">
            <div class="d-wrapper">
               <div class="d-content" id="del-content">
