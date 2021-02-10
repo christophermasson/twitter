@@ -903,7 +903,7 @@ button#delete-post-btn:hover{
     padding:var(--spacing);
     min-height:6.6rem;
 }
-.edit-profile-btn,.p-btn,.p-edit-btn{
+.edit-profile-btn,.p-btn{
     background-color:rgba(0,0,0,0);
     border:none;
     color:var(--blue);
@@ -958,14 +958,18 @@ span.description{
 .followersContainer a:hover{
     border-bottom:0.1rem solid #000;
 }
-.followersContainer .value{
-    font-weight:bold;
-    margin-right:0.5rem;
+.followersContainer .value {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: rgb(15,20,25);
+    margin-right: 0.5rem;
 }
-.followersContainer span:not(.value){
-    color:rgb(91,112,131);
+.followersContainer span:not(.value) {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: rgb(91,112,131);
 }
-button.edit-profile-btn:hover,.p-btn:hover,.p-edit-btn:hover{
+button.edit-profile-btn:hover,.p-btn:hover{
     background-color:var(--blue-50-a1);
 }
 .tabsContainer{
@@ -981,14 +985,17 @@ button.edit-profile-btn:hover,.p-btn:hover,.p-edit-btn:hover{
     align-items: center;
     font-weight: bold;
     color: var(--grayText);
+    transition: background-color 0.3s;
 }
 svg.p-btn-icon {
     fill:var(--blue);
 }
 
-.tabsContainer .tab span{
-    font-size:2rem;
-    color:var(--grayText);
+.tabsContainer .tab span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--grayText);
+    transition:color 0.3s;
 }
 .tab.active{
     border-bottom:.2rem solid var(--blue) !important;
@@ -997,7 +1004,9 @@ svg.p-btn-icon {
     color:var(--blue) !important;
 }
 .tab:hover{
-    color:var(--blue);
     background-color:var(--blue-50-a1);
+}
+.tab:hover span{
+    color:var(--blue);
 }
 /* End of profile style */

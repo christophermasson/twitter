@@ -47,8 +47,8 @@ $pageTitle='Tweets with replies by '.$profileData->firstName.' '.$profileData->l
         </div>
         <?php require_once 'backend/shared/profile_header.php'; ?>
         <div class="tabsContainer">
-          <?php echo $loadFromTweet->createTab('Posts',url_for($profileData->username),false); ?>
-          <?php echo $loadFromTweet->createTab('Replies',url_for($profileData->username.'/replies'),true); ?>
+          <?php echo $loadFromTweet->createTab('Tweets',url_for($profileData->username),false); ?>
+          <?php echo $loadFromTweet->createTab('Tweets & replies',url_for($profileData->username.'/replies'),true); ?>
          
         </div>
         
