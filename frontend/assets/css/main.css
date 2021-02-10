@@ -903,7 +903,7 @@ button#delete-post-btn:hover{
     padding:var(--spacing);
     min-height:6.6rem;
 }
-.edit-profile-btn{
+.edit-profile-btn,.p-btn{
     background-color:rgba(0,0,0,0);
     border:none;
     color:var(--blue);
@@ -914,6 +914,7 @@ button#delete-post-btn:hover{
     border-radius:var(--corner-radius-full);
     cursor:pointer;
     text-align:center;
+    margin-left: var(--spacing);
 }
 .profileHeaderContainer .userDetailsContainer{
     display:flex;
@@ -964,7 +965,7 @@ span.description{
 .followersContainer span:not(.value){
     color:rgb(91,112,131);
 }
-button.edit-profile-btn:hover{
+button.edit-profile-btn:hover,.p-btn:hover{
     background-color:var(--blue-50-a1);
 }
 .tabsContainer{
@@ -980,6 +981,9 @@ button.edit-profile-btn:hover{
     align-items: center;
     font-weight: bold;
     color: var(--grayText);
+}
+svg.p-btn-icon {
+    fill:var(--blue);
 }
 
 .tabsContainer .tab span{

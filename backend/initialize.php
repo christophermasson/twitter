@@ -27,6 +27,7 @@ $tweetControls=new TweetControls;
 $loadFromUser=new User;
 $verify=new Verify;
 $loadFromTweet=new Tweet;
+$loadFromFollow=new Follow;
 
 include "functions.php";
 
