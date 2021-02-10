@@ -1009,4 +1009,47 @@ svg.p-btn-icon {
 .tab:hover span{
     color:var(--blue);
 }
+/* Profile modal style */
+.modal-pic{
+/*     width: 100vw; */
+    height: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0);
+    background: rgba(0,0,0,0.4);
+/*     display:none; */
+}
+.artdeco-modal-pic{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgb(101 119 134 / 20%) 0px 0px 15px, rgb(101 119 134 / 15%) 0px 0px 3px 1px;
+    background-color: #fff;
+    min-width:600px;
+    max-width:80vw;
+    height: 600px;
+    max-height:90vh;
+    overflow: hidden;
+    border-radius: 16px;
+}
+.header__topcard{
+    display:flex;
+    padding:1rem;
+    justify-content:space-between;
+    border-bottom:0.1rem solid var(--gray);
+    border-top-right-radius:0.4rem;
+    border-top-left-radius:0.4rem;
+    background-color:rgba(255,255,255,1);
+}
+.a-modal-site-logo-wrapper{
+    font-size:3rem;
+    color:#1DA1F5;
+    padding-left:23rem;
+}
+/* End of profile modal style */
 /* End of profile style */
