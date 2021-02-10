@@ -58,7 +58,7 @@ $pageTitle=$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData-
         <div class="reply-wrapper">
          
         </div>
-        <div class="modal-pic" id="modal-pic">
+        <div class="modal-pic" id="modal-pic" style="display:none;">
            <div class="artdeco-modal-pic" role="dialog" aria-labelledby="profile-topcard-background-image-header">
               <div class="art-pic-step" aria-modal="true" style="display:none;">
                  <div class="header__topcard">
