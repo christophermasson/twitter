@@ -903,7 +903,7 @@ button#delete-post-btn:hover{
     padding:var(--spacing);
     min-height:6.6rem;
 }
-.edit-profile-btn,.p-btn{
+.edit-profile-btn,.p-btn,.p-edit-btn{
     background-color:rgba(0,0,0,0);
     border:none;
     color:var(--blue);
@@ -965,7 +965,7 @@ span.description{
 .followersContainer span:not(.value){
     color:rgb(91,112,131);
 }
-button.edit-profile-btn:hover,.p-btn:hover{
+button.edit-profile-btn:hover,.p-btn:hover,.p-edit-btn:hover{
     background-color:var(--blue-50-a1);
 }
 .tabsContainer{
