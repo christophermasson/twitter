@@ -99,6 +99,67 @@ class User{
         $user=$this->get("users",["user_id"],array("username"=>$username));
         return $user->user_id;
     }
+
+    public function cropProfileImageUpload($file,$userId){
+            $fileInfo=getimagesize($file['tmp_name']);
+            //   var_dump($fileInfo);
+            $fileTmp=$file['tmp_name'];
+            $fileName=$file['name'];
+            $fileType=$file['type'];
+            $fileSize=$file['size'];
+            $fileError=$file['error'];
+        
+            $ext=explode('/',$fileType);
+            $ext=strtolower(end($ext));
+            //   echo $ext;
+            $allowed=array('image/png','image/jpeg','image/jpg');
+        
+            if(in_array($fileInfo['mime'],$allowed)){
+                $path_directory=$_SERVER['DOCUMENT_ROOT']."/Twitter/frontend/profileImage/".$userId."/";
+                if(!file_exists($path_directory) && !is_dir($path_directory)){
+                    mkdir($path_directory,0777,true);
+                }
+                $folder="frontend/profileImage/".$userId."/".substr(md5(time().mt_rand()),2,25).".".$ext;
+                $path_files=$_SERVER['DOCUMENT_ROOT']."/Twitter/".$folder;
+                if($fileError ===0){
+                    move_uploaded_file($fileTmp,$path_files);
+                    return $folder;
+                    
+                }
+            
+            }
+    }
+
+    
+    public function cropCoverImageUpload($file,$userId){
+        $fileInfo=getimagesize($file['tmp_name']);
+        //   var_dump($fileInfo);
+        $fileTmp=$file['tmp_name'];
+        $fileName=$file['name'];
+        $fileType=$file['type'];
+        $fileSize=$file['size'];
+        $fileError=$file['error'];
+    
+        $ext=explode('/',$fileType);
+        $ext=strtolower(end($ext));
+        //   echo $ext;
+        $allowed=array('image/png','image/jpeg','image/jpg');
+    
+        if(in_array($fileInfo['mime'],$allowed)){
+            $path_directory=$_SERVER['DOCUMENT_ROOT']."/Twitter/frontend/profileCover/".$userId."/";
+            if(!file_exists($path_directory) && !is_dir($path_directory)){
+                mkdir($path_directory,0777,true);
+            }
+            $folder="frontend/profileCover/".$userId."/".substr(md5(time().mt_rand()),2,25).".".$ext;
+            $path_files=$_SERVER['DOCUMENT_ROOT']."/Twitter/".$folder;
+            if($fileError ===0){
+                move_uploaded_file($fileTmp,$path_files);
+                return $folder;
+                
+            }
+        
+        }
+}
     public function timeAgo($datetime){
         $time = strtotime($datetime);
         $current = time();

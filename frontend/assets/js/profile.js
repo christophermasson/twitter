@@ -1,8 +1,11 @@
+var cropper;
+$uid=$(".u-p-id").data("uid");
 $(function(){
     var modal=document.querySelector(".modal-pic");
     var profileModal=document.querySelector(".art-pic-step");
     var previewContainer=document.querySelector(".modal-preview-container");
     var coverModal=document.querySelector(".art-cov-step");
+    
 
   
     $(document).on("click","#set-up-profile",function(){
@@ -44,12 +47,77 @@ $(function(){
             reader.onload=function(e){
                 let image=document.getElementById("imagePreview");
                 image.src=e.target.result;
+                if(cropper !== undefined){
+                    cropper.destroy();
+                }
+                cropper=new Cropper(image,{
+                    aspectRatio:1 / 1,
+                    background:false
+                });
                 // console.log(e);
             }
             reader.readAsDataURL(this.files[0]);
         }
     })
+ 
+    $(document).on("click","#imageUploadButton",function(){
+      
+        let isProfile=$(".go-back-arrow").hasClass("profile-go-back");
+        if(isProfile){
+            var name=document.getElementById("topcard_filePhoto").files[0];
+            let canvas=cropper.getCroppedCanvas();
+            if(canvas == null){
+                alert("Could not upload image,make usre it is an image file");
+                return;
+            }
+            canvas.toBlob((blob)=>{
+                let formData=new FormData();
+                formData.append("croppedImage",blob);
+                // alert($uid);
+                formData.append("userId",$uid);
+                $.ajax({
+                    url:"http://localhost/twitter/backend/ajax/profilePhoto.php",
+                    type:"POST",
+                    processData:false,
+                    data:formData,
+                    contentType:false,
+                    success:function(data){
+                        // alert(data);
+                        location.reload(true);
+                    }
+                })
+                // console.log(blob);
+            })
+            // console.log(name);
+            //   alert("Is a profile page!");
+        }else{
+            var name=document.getElementById("topcard_filePhoto").files[0];
+            let canvas=cropper.getCroppedCanvas();
+            if(canvas == null){
+                alert("Could not upload image,make usre it is an image file");
+                return;
+            }
+            canvas.toBlob((blob)=>{
+                let formData=new FormData();
+                formData.append("croppedCoverImage",blob);
+                // alert($uid);
+                formData.append("userId",$uid);
+                $.ajax({
+                    url:"http://localhost/twitter/backend/ajax/profilePhoto.php",
+                    type:"POST",
+                    processData:false,
+                    data:formData,
+                    contentType:false,
+                    success:function(data){
+                        // alert(data);
+                        location.reload(true);
+                    }
+                })
+                // console.log(blob);
+            })
 
+        }
+    })
     $(document).on("change","#topcard_covfilePhoto",function(e){
         // console.log(this.files[0])
         if(this.files && this.files[0]){
@@ -60,6 +128,13 @@ $(function(){
             reader.onload=function(e){
                 let image=document.getElementById("imagePreview");
                 image.src=e.target.result;
+                if(cropper !== undefined){
+                    cropper.destroy();
+                }
+                cropper=new Cropper(image,{
+                    aspectRatio:16 / 9,
+                    background:false
+                });
                 // console.log(e);
             }
             reader.readAsDataURL(this.files[0]);
