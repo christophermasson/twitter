@@ -1127,4 +1127,59 @@ input.fileInputPhoto{
     object-fit:cover;
 }
 /* End of profile cover modal style  */
+/* Edit Profile modal style */
+.preview-modal-header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem;
+    border-bottom:0.1rem solid var(--gray);
+    border-top-right-radius:0.4rem;
+    border-top-left-radius:0.4rem;
+}
+.preview-header-content {
+    display: flex;
+    align-items: center;
+}
+.preview-header-content h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+span.submitProfileChange {
+    background: var(--blue);
+    color:#fff;
+    padding:var(--spacing);
+    border-radius:var(--corner-radius-full);
+    font-size:1.5rem;
+    cursor:pointer;
+    transition:background-color 0.3s;
+}
+.submitProfileChange:hover{
+    background:rgb(26,145,218);
+}
+.preview-modal-body {
+    width: 100%;
+    height: 197px;
+    position: relative;
+    font-size: 2rem;
+    padding: 2rem;
+}
+.preview-modal-body .modal-body-profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0;
+}
+.preview-modal-body .imagePreviewContainer {
+    width: 80%;
+    height: 90%;
+    margin: 0 auto;
+}
+img#imagePreview {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+}
+/* End of Edit Profile modal style */
 /* End of profile style */

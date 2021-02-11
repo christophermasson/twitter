@@ -34,9 +34,9 @@
              }
          }else{
              if($userData->profileEdit==1){
-                echo '<button class="p-btn" role="button">Edit Profile</button>';
+                echo '<button class="p-btn" role="button" id="edited-profile">Edit Profile</button>';
              }else{
-                echo '<button class="edit-profile-btn" role="button">Set up Profile</button>';
+                echo '<button class="edit-profile-btn" id="set-up-profile" role="button">Set up Profile</button>';
              }
             
          }

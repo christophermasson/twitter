@@ -58,6 +58,7 @@ $pageTitle='Tweets with replies by '.$profileData->firstName.' '.$profileData->l
         <div class="reply-wrapper">
          
         </div>
+        <?php require_once 'backend/shared/previewContainer.php'; ?>
         <div class="d-wrapper-container">
            <div class="d-wrapper">
               <div class="d-content" id="del-content">
@@ -96,6 +97,7 @@ $pageTitle='Tweets with replies by '.$profileData->firstName.' '.$profileData->l
      </aside>
    </main>
 </section>
+<script src="<?php echo url_for("frontend/assets/js/profile.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/delete.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/fetchTweet.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/reply.js"); ?>"></script>

@@ -7,7 +7,6 @@
            </div>
            <div class="profileButtonContainer">
                <?php $loadFromFollow->profileBtn($profileId,$user_id); ?>
-               <!-- <button class="edit-profile-btn" role="button">Set up Profile</button> -->
            </div>
            <div class="userDetailsContainer">
               <span class="displayName"><?php echo $profileData->firstName.' '.$profileData->lastName; ?></span>
