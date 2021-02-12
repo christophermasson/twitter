@@ -100,6 +100,9 @@ class User{
         return $user->user_id;
     }
 
+    public function is_log_in(){
+        return (isset($_SESSION['userLoggedIn']) ? true : false);
+    }
     public function cropProfileImageUpload($file,$userId){
             $fileInfo=getimagesize($file['tmp_name']);
             //   var_dump($fileInfo);

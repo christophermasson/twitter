@@ -1,19 +1,19 @@
 <?php
 $user_id=$_SESSION['userLoggedIn'];
+if(isset($_SESSION['userLoggedIn'])){
+  $verify->authOnly($user_id);
 
-$status=$verify->getVerifyStatus(["status"],$user_id);
+}
 if(Login::isLoggedIn()){
     redirect_to(url_for('home'));
-  }else if(isset($_SESSION['userLoggedIn']) && $status->status=='1'){
-    redirect_to(url_for('home'));
- }
+}
+
   
   $errors=array();
   
   if(isset($_SESSION['userLoggedIn'])){
       $user_id=(int)($_SESSION['userLoggedIn']);
       $user=$loadFromUser->userData($user_id);
-      // $loadFromUser->create("users",['user_id'=>1,"profileEdit"=>0]);
       $link=$verify->generateLink();
       $message="{$user->firstName},Your account has been created,Please visit this link to verify your email <a href='http://localhost/twitter/verification/$link'>Verify Link</a>";
       $subject="[TWITTER] PLease verify your account";

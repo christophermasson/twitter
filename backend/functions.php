@@ -16,6 +16,9 @@ function url_for($script){
     return WWW_ROOT.$script;
 }
 
+function u($string=""){
+    return urlencode($string);
+}
 function redirect_to($location){
     header("Location:".$location);
     exit;

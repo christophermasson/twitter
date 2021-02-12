@@ -22,6 +22,29 @@ class Verify{
         return $this->user->get('verification',$targetColumn,array('user_id'=>$user_id));
     }
 
+    public function authOnly($userId){
+        $stmt=$this->pdo->prepare("SELECT * FROM `verification` WHERE user_id=:userId ORDER BY `createdAt`");
+        $stmt->bindParam(":userId",$userId,PDO::PARAM_INT);
+        $stmt->execute();
+        $user=$stmt->fetch(PDO::FETCH_OBJ);
+        $files=array('verification.php');
+
+        if(!$this->user->is_log_in()){
+            redirect_to(url_for('index'));
+        }
+
+        if(!empty($user)){
+            if($user->status==='0' && !in_array(basename($_SERVER['SCRIPT_NAME']),$files)){
+                redirect_to(url_for('verification'));
+            }
+
+            if($user->status==='1' && in_array(basename($_SERVER['SCRIPT_NAME']),$files)){
+                redirect_to(url_for('home'));
+            }
+        }else if(!in_array(basename($_SERVER['SCRIPT_NAME']),$files)){
+            redirect_to(url_for('verification'));
+        }
+    }
 
     public function sendToMail($email,$message,$subject){
         $mail=new PHPMailer\PHPMailer\PHPMailer(true);

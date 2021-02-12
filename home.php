@@ -1,6 +1,11 @@
 <?php
 include 'backend/initialize.php';
 
+
+if(isset($_SESSION['userLoggedIn'])){
+   $user_id=$_SESSION['userLoggedIn'];
+  $verify->authOnly($user_id);
+}
 if(isset($_SESSION['userLoggedIn'])){
    $user_id=$_SESSION['userLoggedIn'];
 }else if(Login::isLoggedIn()){
@@ -27,7 +32,7 @@ $pageTitle="Home / Twitter";
            <img src="<?php echo url_for("frontend/assets/images/star.svg"); ?>" width="40px" height="40px" alt="">
         </div>
         <div class="header-post">
-           <a href="<?php echo url_for($user->username); ?>" role="link" class="userImageContainer" aria-label="<?php echo $user->firstName.' '.$user->lastName; ?>">
+           <a href="<?php echo url_for(h(u($user->username))); ?>" role="link" class="userImageContainer" aria-label="<?php echo $user->firstName.' '.$user->lastName; ?>">
               <img src="<?php echo url_for($user->profileImage); ?>" alt="<?php echo $user->firstName.' '.$user->lastName; ?>">
            </a>
            <form class="textareaContainer">
