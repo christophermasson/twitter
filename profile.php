@@ -1,29 +1,7 @@
 <?php
-include 'backend/initialize.php';
-
-if(isset($_SESSION['userLoggedIn'])){
-   $user_id=$_SESSION['userLoggedIn'];
-}else if(Login::isLoggedIn()){
-   $user_id=Login::isLoggedIn();
-}
-if(isset($_SESSION['userLoggedIn'])){
-   $user_id=$_SESSION['userLoggedIn'];
-  $verify->authOnly($user_id);
-}
-if(is_get_request()){
-    if(isset($_GET['username']) && !empty($_GET['username'])){
-       $username=FormSanitizer::formSanitizerString($_GET['username']);
-       $profileId=$loadFromUser->userIdByUsername($username);
-       if(!$profileId){
-        redirect_to(url_for('home'));
-       }
-    }else{
-        $profileId=$user_id;
-    }
-}
-$user=$loadFromUser->userData($user_id);
-$profileData=$loadFromUser->userData($profileId);
+require_once "backend/shared/main_header_functionality.php";
 $date_joined=strtotime($profileData->signUpDate);
+
 
 $pageTitle=$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData->username.') / Twitter';
 
@@ -34,17 +12,6 @@ $pageTitle=$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData-
    <?php  require_once 'backend/shared/nav_header.php'; ?>
    <main role="main">
      <section class="mainSectionContainer">
-        <div class="header-top">
-          <div class="go-back-arrow" id="go-back-home" aria-label="Back" role="button" data-focusable="true" tabindex="0">
-             <svg viewBox="0 0 24 24" class="color-blue"><g><path d="M20 11H7.414l4.293-4.293c.39-.39.39-1.023 0-1.414s-1.023-.39-1.414 0l-6 6c-.39.39-.39 1.023 0 1.414l6 6c.195.195.45.293.707.293s.512-.098.707-.293c.39-.39.39-1.023 0-1.414L7.414 13H20c.553 0 1-.447 1-1s-.447-1-1-1z"></path></g></svg>
-          </div>
-          <div class="header-top-pro">
-              <h4><?php echo $profileData->firstName.' '.$profileData->lastName; ?></h4>
-              <?php if(!empty($loadFromTweet->tweetCounts($profileId))){ ?>
-              <div class="tweet-no"><?php echo $loadFromTweet->tweetCounts($profileId); ?> Tweets</div>
-              <?php } ?>
-          </div>
-        </div>
         <?php require_once 'backend/shared/profile_header.php'; ?>
         <div class="tabsContainer">
           <?php echo $loadFromTweet->createTab('Tweets',url_for($profileData->username),true); ?>
@@ -98,6 +65,7 @@ $pageTitle=$profileData->firstName.' '.$profileData->lastName.'(@'.$profileData-
    </main>
 </section>
 <script src="<?php echo url_for("frontend/assets/js/profile.js"); ?>"></script>
+<script src="<?php echo url_for("frontend/assets/js/follow.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/delete.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/fetchTweet.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/reply.js"); ?>"></script>

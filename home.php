@@ -1,22 +1,5 @@
 <?php
-include 'backend/initialize.php';
-
-
-if(isset($_SESSION['userLoggedIn'])){
-   $user_id=$_SESSION['userLoggedIn'];
-  $verify->authOnly($user_id);
-}
-if(isset($_SESSION['userLoggedIn'])){
-   $user_id=$_SESSION['userLoggedIn'];
-}else if(Login::isLoggedIn()){
-   $user_id=Login::isLoggedIn();
-}
-$status=$verify->getVerifyStatus(["status"],$user_id);
-if(!$status->status=='1'){
-   redirect_to(url_for('index'));
-}
-
-$user=$loadFromUser->userData($user_id);
+require_once "backend/shared/main_header_functionality.php";
 
 $pageTitle="Home / Twitter";
 
