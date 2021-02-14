@@ -4,17 +4,19 @@ class Tweet{
 
     private $pdo;
     private $user;
-   //  private $commentControls;
-
+   
     public function __construct(){
         $this->pdo=Database::instance();
         $this->user=new User;
-      //   $this->tweetControls=new TweetControls;
+    
     }
 
     public function tweets($user_id,$num){
-        $stmt=$this->pdo->prepare("SELECT * FROM `tweets`,`users` WHERE `tweetBy`=`user_id` AND `user_id`=:userId ORDER BY postedOn DESC LIMIT :num");
-        $stmt->bindParam(":userId",$user_id,PDO::PARAM_INT);
+        $stmt=$this->pdo->prepare("SELECT * FROM tweets t LEFT JOIN users u ON t.tweetBy=u.user_id WHERE t.tweetBy=:user_id UNION 
+        SELECT * FROM tweets t LEFT JOIN users u ON t.tweetBy=u.user_id WHERE t.tweetBy IN (SELECT follow.receiver FROM follow WHERE follow.sender=:user_id)
+        ORDER BY postedOn DESC LIMIT :num
+        ");
+        $stmt->bindParam(":user_id",$user_id,PDO::PARAM_INT);
         $stmt->bindParam(":num",$num,PDO::PARAM_INT);
         $stmt->execute();
         $comments=$stmt->fetchAll(PDO::FETCH_OBJ);
