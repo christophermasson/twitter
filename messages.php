@@ -49,6 +49,33 @@ $pageTitle="Messages / Twitter";
         </div>
      </div>  
      <?php endif; ?>
+     <div class="msg-user-wrapper">
+         <ul class="msg-user-add">
+             <li class="msg-user-name-wrap">
+                 <div class="msg-user-name-wrap">
+                     <div class="msg-user-photo">
+                         <img src="<?php echo url_for($user->profileImage); ?>" alt="<?php echo $user->firstName; ?>">
+                     </div>
+                     <div class="msg-user-name-text">
+                         <div class="msg-user-new">
+                             <div class="msg-user-name">
+                                 <h3>Full Name</h3>
+                                 <span class="msg-username">@cglikpo</span>
+                             </div>
+                             <div class="msg-user-text">
+                                 <div class="msg-previ">
+                                     Text
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="msg-date-wrapper">
+                             <div class="msg-date">1h</div>
+                         </div>
+                     </div>
+                 </div>
+             </li>
+         </ul>
+     </div>
      </section>
      <aside role="complementary" class="right-msg">
         <?php if(!isset($_GET['message'])): ?>
