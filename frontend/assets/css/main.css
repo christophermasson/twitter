@@ -1320,9 +1320,9 @@ img#imagePreview {
 /* end of message popup style */
 /* Recent message style */
 .msg-user-photo {
-    height: 4rem;
-    width: 4rem;
-    margin-right:1rem;
+    margin-right: 1rem;
+    flex-basis: 13%;
+    flex-shrink: 0;
 }
 .msg-user-name-wrap {
     width: 100%;
@@ -1362,6 +1362,22 @@ span.msg-username {
     line-height: 1.5rem;
     font-weight: 400;
     font-size: 1.5rem;
+}
+.msg-user-text{
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    color:rgb(91,112,131);
+    font-weight:400;
+    line-height:1.5rem;
+    font-size:1.5rem;
+    overflow-wrap:anywhere;
+}
+.msg-previ{
+    text-overflow:ellipsis;
+}
+li.msg-user-name-wrap:hover{
+    background-color:rgb(247,249,250);
 }
 /* End of recent message style */
 /* End of message style */

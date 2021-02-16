@@ -90,6 +90,9 @@ $pageTitle="Messages / Twitter";
      </aside>
    </main>
 </section>
+<script>
+    $(document).ready(func)
+</script>
 <script src="<?php echo url_for("frontend/assets/js/delete.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/search.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/message.js"); ?>"></script>
