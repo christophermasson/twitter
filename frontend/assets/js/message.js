@@ -1,4 +1,3 @@
-var timer;
 $(function(){
     // let uid=$(".u-p-id").data("uid");
     var modal=document.querySelector(".popup-msg-container");
@@ -18,10 +17,14 @@ $(function(){
         }
     });
 
-    $(document).on("keydown",".s-user",function(e){
-        // console.log(e);
-    })
-  
+
+    $(document).on("click",".h-ment",function(){
+        var profileId=$(this).data("profileid");
+        if(profileId != ""  && profileId != undefined){
+            window.location.href="http://localhost/twitter/messages/"+profileId;
+        }
+    });
+   
 
     
 })

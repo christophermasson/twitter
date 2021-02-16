@@ -28,6 +28,7 @@ $loadFromUser=new User;
 $verify=new Verify;
 $loadFromTweet=new Tweet;
 $loadFromFollow=new Follow;
+$loadFromMessage=new Message;
 
 include "functions.php";
 
