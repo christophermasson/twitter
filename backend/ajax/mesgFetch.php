@@ -4,7 +4,7 @@ require_once "../initialize.php";
 
 if(is_post_request()){
     if(isset($_POST['loadUserid']) && !empty($_POST['loadUserid'])){
-        $userid=h((int)$_POST['loadUserid']);
+        $userid=h(int)($_POST['loadUserid']);
         $otherid=h($_POST['otheruserid']);
 
         $allusersmsg=$loadFromMessage->recentMessages($userid);
