@@ -1,7 +1,16 @@
 <?php
 require_once "backend/shared/main_header_functionality.php";
 
-$pageTitle="Messages / Twitter";
+if(!isset($_GET['message'])){
+    $pageTitle="Messages / Twitter";
+    $otheruserid="";
+}else{
+    $otheruserid=h($_GET['message']);
+    $otheruserData=$loadFromUser->userData($otheruserid);
+    $pageTitle=$otheruserData->firstName.' '.$otheruserData->lastName." / Twitter";
+
+}
+
 
 ?>
 <?php require_once 'backend/shared/header.php'; ?>
@@ -91,7 +100,17 @@ $pageTitle="Messages / Twitter";
    </main>
 </section>
 <script>
-    $(document).ready(func)
+    $uid=$(".u-p-id").data("uid");
+    $(document).ready(function(){
+        function userLoad(){
+            var otheruserid='<?php echo $otheruserid; ?>';
+            $.post('http://localhost/twitter/backend/ajax/mesgFetch.php',{loadUserid:$uid,otheruserid:otheruserid},function(data){
+                alert(data);
+            })
+        }
+
+        userLoad();
+    })
 </script>
 <script src="<?php echo url_for("frontend/assets/js/delete.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/search.js"); ?>"></script>
