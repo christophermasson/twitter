@@ -1379,5 +1379,8 @@ span.msg-username {
 li.msg-user-name-wrap:hover{
     background-color:rgb(247,249,250);
 }
+li.msg-user-name-wrap.activeClass{
+    border-right:0.2rem solid rgb(29,161,242);
+}
 /* End of recent message style */
 /* End of message style */
