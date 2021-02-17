@@ -7,6 +7,12 @@ if(!isset($_GET['message'])){
 }else{
     $otheruserid=h($_GET['message']);
     $otheruserData=$loadFromUser->userData($otheruserid);
+    // if(empty($otheruserData)){
+    //     redirect_to(url_for("home"));
+    // }
+    if(!$otheruserData){
+        redirect_to(url_for("home"));
+    }
     $pageTitle=$otheruserData->firstName.' '.$otheruserData->lastName." / Twitter";
 
 }
@@ -58,7 +64,7 @@ if(!isset($_GET['message'])){
         </div>
      </div>  
      <?php endif; ?>
-     <div class="msg-user-wrapper">
+     <div class="msg-user-wrapper"  style="overflow-y:auto;height:90%;">
          <ul class="msg-user-add">
              
          </ul>
@@ -73,6 +79,25 @@ if(!isset($_GET['message'])){
                 <a href="<?php echo url_for("messages?q=composeNewMessage") ?>" class="n-msg msg-btn" role="button" data-focusable="true">New message</a>
             </div>
         </div>
+        <?php elseif(isset($_GET['message'])): ?>
+          <section class="chatsMessageContainer" aria-labelledby="detail header" aria-header="Section header" role="region">
+             <div class="chat-header-top">
+                <div class="chat-header-left">
+                   <a href="<?php echo url_for($otheruserData->username); ?>" class="chat-header-image-wrapper">
+                      <img src="<?php echo url_for($otheruserData->profileImage);  ?>" alt="<?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?>">
+                   </a>
+                   <div class="chat-header-name-wrapper">
+                       <h3><?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?></h3>
+                       <span class="chat-header-username">
+                            @<?php echo $otheruserData->username; ?>
+                       </span>
+                   </div>
+                </div>
+                <div class="chat-header-right">
+                   <svg viewBox="0 0 24 24" class="color-blue"><g><path d="M12 18.042c-.553 0-1-.447-1-1v-5.5c0-.553.447-1 1-1s1 .447 1 1v5.5c0 .553-.447 1-1 1z"></path><circle cx="12" cy="8.042" r="1.25"></circle><path d="M12 22.75C6.072 22.75 1.25 17.928 1.25 12S6.072 1.25 12 1.25 22.75 6.072 22.75 12 17.928 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z"></path></g></svg>
+                </div>
+             </div>
+          </section>
         <?php endif; ?>
      </aside>
    </main>
