@@ -81,22 +81,69 @@ if(!isset($_GET['message'])){
         </div>
         <?php elseif(isset($_GET['message'])): ?>
           <section class="chatsMessageContainer" aria-labelledby="detail header" aria-header="Section header" role="region">
-             <div class="chat-header-top">
-                <div class="chat-header-left">
-                   <a href="<?php echo url_for($otheruserData->username); ?>" class="chat-header-image-wrapper">
-                      <img src="<?php echo url_for($otheruserData->profileImage);  ?>" alt="<?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?>">
-                   </a>
-                   <div class="chat-header-name-wrapper">
-                       <h3><?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?></h3>
-                       <span class="chat-header-username">
-                            @<?php echo $otheruserData->username; ?>
-                       </span>
-                   </div>
+                <div class="chat-header-top">
+                    <div class="chat-header-left">
+                    <a href="<?php echo url_for($otheruserData->username); ?>" class="chat-header-image-wrapper">
+                        <img src="<?php echo url_for($otheruserData->profileImage);  ?>" alt="<?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?>">
+                    </a>
+                    <div class="chat-header-name-wrapper">
+                        <h3><?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?></h3>
+                        <span class="chat-header-username">
+                                @<?php echo $otheruserData->username; ?>
+                        </span>
+                    </div>
+                    </div>
+                    <div class="chat-header-right">
+                    <svg viewBox="0 0 24 24" class="color-blue"><g><path d="M12 18.042c-.553 0-1-.447-1-1v-5.5c0-.553.447-1 1-1s1 .447 1 1v5.5c0 .553-.447 1-1 1z"></path><circle cx="12" cy="8.042" r="1.25"></circle><path d="M12 22.75C6.072 22.75 1.25 17.928 1.25 12S6.072 1.25 12 1.25 22.75 6.072 22.75 12 17.928 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z"></path></g></svg>
+                    </div>
                 </div>
-                <div class="chat-header-right">
-                   <svg viewBox="0 0 24 24" class="color-blue"><g><path d="M12 18.042c-.553 0-1-.447-1-1v-5.5c0-.553.447-1 1-1s1 .447 1 1v5.5c0 .553-.447 1-1 1z"></path><circle cx="12" cy="8.042" r="1.25"></circle><path d="M12 22.75C6.072 22.75 1.25 17.928 1.25 12S6.072 1.25 12 1.25 22.75 6.072 22.75 12 17.928 22.75 12 22.75zm0-20C6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25s9.25-4.15 9.25-9.25S17.1 2.75 12 2.75z"></path></g></svg>
+                <div class="chatPageContainer">
+                    <div class="mainChatContainer">
+                        <div class="mssg-details">
+                            <div class="msg-show-wrap">
+                                <div class="user-info" data-userid="<?php echo $user_id; ?>" data-otherid="<?php echo $otheruserData->user_id; ?>"></div>
+                                <div class="msg-empty-space">
+                                    <div class="msg-box">
+                                        <div class="past-data-count"></div>
+                                        <div class="right-sender-msg">
+                                             <div class="right-sender-text-time">
+                                                 <div class="right-sender-text-wrapper">
+                                                     <div class="s-text">
+                                                         <div class="s-msg-text">
+                                                             Message here
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                                 <div class="sender-time">1h</div>
+                                             </div>
+                                        </div>
+                                        <div class="left-receiver-msg">
+                                            <a href="<?php echo $otheruserData->username; ?>" class="receiver-img">
+                                              <img src="<?php echo url_for($otheruserData->profileImage);  ?>" alt="<?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?>">
+                                           </a>
+                                           <div class="receiver-text-time">
+                                                <div class="left-receiver-text-wrapper">
+                                                            <div class="r-text">
+                                                                <div class="r-msg-text">
+                                                                    Message here
+                                                                </div>
+                                                            </div>
+                                                </div>
+                                            <div class="sender-time">1h</div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                        <aside class="chat-footer" aria-label="Start a new message" role="complementary">
+                            <textarea name="messageInput" id="statusEmoji" placeholder="Start a new Message" aria-label="Start a new Message"></textarea>
+                            <button role="button" class="msg-send-btn" id="semdMsgBtn">
+                               <svg viewBox="0 0 24 24" class="msg-send color-blue"><g><path d="M21.13 11.358L3.614 2.108c-.29-.152-.64-.102-.873.126-.23.226-.293.577-.15.868l4.362 8.92-4.362 8.92c-.143.292-.08.643.15.868.145.14.333.212.523.212.12 0 .24-.028.35-.087l17.517-9.25c.245-.13.4-.386.4-.664s-.155-.532-.4-.662zM4.948 4.51l12.804 6.762H8.255l-3.307-6.76zm3.307 8.26h9.498L4.948 19.535l3.307-6.763z"></path></g></svg>
+                            </button>
+                        </aside>
+                    </div>
                 </div>
-             </div>
           </section>
         <?php endif; ?>
      </aside>
