@@ -104,34 +104,7 @@ if(!isset($_GET['message'])){
                                 <div class="user-info" data-userid="<?php echo $user_id; ?>" data-otherid="<?php echo $otheruserData->user_id; ?>"></div>
                                 <div class="msg-empty-space">
                                     <div class="msg-box">
-                                        <div class="past-data-count"></div>
-                                        <div class="right-sender-msg">
-                                             <div class="right-sender-text-time">
-                                                 <div class="right-sender-text-wrapper">
-                                                     <div class="s-text">
-                                                         <div class="s-msg-text">
-                                                             Message here
-                                                         </div>
-                                                     </div>
-                                                 </div>
-                                                 <div class="sender-time">1h</div>
-                                             </div>
-                                        </div>
-                                        <div class="left-receiver-msg">
-                                            <a href="<?php echo $otheruserData->username; ?>" class="receiver-img">
-                                              <img src="<?php echo url_for($otheruserData->profileImage);  ?>" alt="<?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?>">
-                                           </a>
-                                           <div class="receiver-text-time">
-                                                <div class="left-receiver-text-wrapper">
-                                                            <div class="r-text">
-                                                                <div class="r-msg-text">
-                                                                    Message here
-                                                                </div>
-                                                            </div>
-                                                </div>
-                                            <div class="sender-time">1h</div>
-                                            </div>
-                                        </div>
+                                
                                       </div>
                                 </div>
                             </div>
@@ -166,6 +139,14 @@ if(!isset($_GET['message'])){
             })
         }
 
+        var otherpersonid="<?php if(!empty($otheruserid)){ echo $otheruserid; } ?>";
+        
+        if(otherpersonid !="" && otherpersonid != null){
+            $.post('http://localhost/twitter/backend/ajax/mesgFetch.php',{userId:$uid,otherpersonid:otherpersonid},function(data){
+                $(".msg-box").html(data);
+                // alert(data);
+            })
+        }
         userLoad();
     })
 </script>

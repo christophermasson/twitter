@@ -39,4 +39,45 @@ if(is_post_request()){
 
         // $loadFromTweet->tweets($userid,$limit);
     }
+
+    if(isset($_POST['otherpersonid']) && !empty($_POST['otherpersonid'])){
+        $userid=h($_POST['userId']);
+        $otherid=h($_POST['otherpersonid']);
+        $messageData=$loadFromMessage->messageData($otherid,$userid);
+        if(!empty($messageData)){
+            echo '<div class="past-data-count" datacount="'.count($messageData).'"></div>';
+            foreach($messageData as $message){
+                if($message->messageFrom ==$userid){
+                    echo '<div class="right-sender-msg">
+                    <div class="right-sender-text-time">
+                        <div class="right-sender-text-wrapper">
+                            <div class="s-text">
+                                <div class="s-msg-text">
+                                    '.$message->message.'
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sender-time">'.$loadFromUser->timeAgo($message->messageOn).'</div>
+                    </div>
+               </div>';
+                }else{
+                    echo '<div class="left-receiver-msg">
+                    <a href="'.url_for(h(u($message->username))).'" class="receiver-img">
+                      <img src="'.url_for($message->profileImage).'" alt="'.$message->firstName.' '.$message->lastName.'">
+                   </a>
+                   <div class="receiver-text-time">
+                        <div class="left-receiver-text-wrapper">
+                                    <div class="r-text">
+                                        <div class="r-msg-text">
+                                        '.$message->message.'
+                                        </div>
+                                    </div>
+                        </div>
+                    <div class="sender-time">'.$loadFromUser->timeAgo($message->messageOn).'</div>
+                    </div>
+                </div>';
+                }
+            }
+        }
+    }
 }
