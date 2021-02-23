@@ -7,8 +7,12 @@ if(is_post_request()){
         $userid=h($_POST['useridForAjax']);
         $otherid=h($_POST['otheridForAjax']);
         $msg=$_POST['msg'];
-        $loadFromUser->create("messages",array("message"=>$msg,"messageFrom"=>$userid,"messageTo"=>$otherid,"messageOn"=>date('Y-m-d H:i:s')));
+        $lastMsgId=$loadFromUser->create("messages",array("message"=>$msg,"messageFrom"=>$userid,"messageTo"=>$otherid,"messageOn"=>date('Y-m-d H:i:s')));
 
+
+        if($otherid != $userid){
+            $loadFromUser->create('notification',array('notificationFor'=>$otherid,'notificationFrom'=>$userid,"type"=>"message","target"=>$lastMsgId,"status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
+        }
         $messageData=$loadFromMessage->messageData($otherid,$userid);
         if(!empty($messageData)){
             echo '<div class="past-data-count" datacount="'.count($messageData).'"></div>';
@@ -51,6 +55,8 @@ if(is_post_request()){
     if(isset($_POST['showmsg']) && !empty($_POST['showmsg'])){
         $userid=h($_POST['yourid']);
         $otherid=h($_POST['showmsg']);
+
+       
         
         $messageData=$loadFromMessage->messageData($otherid,$userid);
         if(!empty($messageData)){

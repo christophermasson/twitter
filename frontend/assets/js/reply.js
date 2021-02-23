@@ -10,7 +10,7 @@ $(function(){
         $counter=$(this).find('.replyCount');
         let wasCommented=$button.hasClass("commented");
         if(wasCommented){
-            $.post("http://localhost/twitter/backend/ajax/reply.php",{delCommentOn:$postId,commentBy:$userId},function(data){
+            $.post("http://localhost/twitter/backend/ajax/reply.php",{delCommentOn:$postId,commentBy:$userId,tweetBy:$postedBy},function(data){
                
                 let result=JSON.parse(data);
                 updateRetweetValue($counter,result.delComment);
@@ -48,10 +48,11 @@ $(function(){
        e.preventDefault();
        let userId=$button.data('user');
        let postId=$button.data('post');
+       let tweetBy=$button.data('postedby');
        let counter=$button.find('.replyCount');
        let textValue=$("#replyInput").val().trim();
        if(textValue != "" && textValue != null){
-        $.post("http://localhost/twitter/backend/ajax/reply.php",{commentOn:postId,commentBy:userId,comment:textValue},function(data){
+        $.post("http://localhost/twitter/backend/ajax/reply.php",{commentOn:postId,commentBy:userId,comment:textValue,tweetBy:tweetBy},function(data){
             
             $(".reply-wrapper").hide();
             let result=JSON.parse(data);

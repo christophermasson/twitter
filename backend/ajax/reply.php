@@ -66,12 +66,12 @@ if(is_post_request()){
 if(isset($_POST['comment']) && !empty($_POST['comment'])){
    $commentBy=h($_POST['commentBy']);
    $commentOn=h($_POST['commentOn']);
-   // $postedBy=$_POST['comment'];
+   $postedBy=$_POST['tweetBy'];
    $allowed_tags='<div><li><h2><h3><h1><ul><p><em><strong><br>';
    $comment=strip_tags($_POST['comment'],$allowed_tags);
    // echo $statusText;
 
-   echo $loadFromTweet->comment($commentBy,$commentOn,$comment);
+   echo $loadFromTweet->comment($commentBy,$commentOn,$comment,$postedBy);
 
 }
 
@@ -79,9 +79,9 @@ if(isset($_POST['comment']) && !empty($_POST['comment'])){
 if(isset($_POST['delCommentOn']) && !empty($_POST['delCommentOn'])){
    $commentBy=h($_POST['commentBy']);
    $commentOn=h($_POST['delCommentOn']);
-  
+   $postedBy=$_POST['tweetBy'];
 
-   echo $loadFromTweet->delComment($commentBy,$commentOn);
+   echo $loadFromTweet->delComment($commentBy,$commentOn,$postedBy);
 
 }
 

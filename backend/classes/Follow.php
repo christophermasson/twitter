@@ -43,6 +43,7 @@
      }
 
      public function follow($followID,$user_id){
+        $this->user->create('notification',array('notificationFor'=>$followID,'notificationFrom'=>$user_id,"type"=>"follow","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
          $this->user->create("follow",array("sender"=>$user_id,"receiver"=>$followID,"followStatus"=>1,"followOn"=>date('Y-m-d H:i:s')));
          $this->addFollowCount($followID,$user_id);
          $stmt=$this->pdo->prepare("SELECT `following`,`followers` FROM `users` LEFT JOIN `follow` ON `sender`=:user_id AND CASE WHEN `receiver`=:user_id THEN `sender`=`user_id` END WHERE `user_id`=:followID");
@@ -57,6 +58,7 @@
      }
 
      public function unfollow($followID,$user_id){
+        $this->user->delete('notification',array('notificationFor'=>$followID,'notificationFrom'=>$user_id,"type"=>"follow","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
         $this->user->delete("follow",array("sender"=>$user_id,"receiver"=>$followID));
         $this->removeFollowCount($followID,$user_id);
         $stmt=$this->pdo->prepare("SELECT `following`,`followers` FROM `users` LEFT JOIN `follow` ON `sender`=:user_id AND CASE WHEN `receiver`=:user_id THEN `sender`=`user_id` END WHERE `user_id`=:followID");

@@ -190,7 +190,7 @@ class Tweet{
    public function likes($user_id,$postId,$postedby){
       if($this->wasLikedBy($user_id,$postId)){
          if($user_id != $postId){
-            $this->user->delete('notification',array('notificationFor'=>$postedby,'notificationFron'=>$user_id,"target"=>$postId,"type"=>"like"));
+            $this->user->delete('notification',array('notificationFor'=>$postedby,'notificationFrom'=>$user_id,"target"=>$postId,"type"=>"like"));
          }
          //User has already liked
          $this->user->delete('likes',array('likeBy'=>$user_id,'likeOn'=>$postId));
@@ -198,7 +198,7 @@ class Tweet{
          return json_encode($result);
       }else{
          if($user_id != $postId){
-            $this->user->create('notification',array('notificationFor'=>$postedby,'notificationFron'=>$user_id,"target"=>$postId,"type"=>"like","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
+            $this->user->create('notification',array('notificationFor'=>$postedby,'notificationFrom'=>$user_id,"target"=>$postId,"type"=>"like","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
          }
          //User has notliked
           $this->user->create('likes',array('likeBy'=>$user_id,'likeOn'=>$postId));
@@ -227,7 +227,7 @@ class Tweet{
    public function retweetCount($retweetBy,$commentID,$status,$postedby){
       if($this->wasRetweetBy($retweetBy,$commentID)){
          if($retweetBy != $postedby){
-            $this->user->delete('notification',array('notificationFor'=>$postedby,'notificationFron'=>$retweetBy,"target"=>$commentID,"type"=>"retweet"));
+            $this->user->delete('notification',array('notificationFor'=>$postedby,'notificationFrom'=>$retweetBy,"target"=>$commentID,"type"=>"retweet"));
          }
          //User has already liked
          $this->user->delete('retweet',array('retweetBy'=>$retweetBy,'retweetFrom'=>$commentID));
@@ -235,7 +235,7 @@ class Tweet{
          return json_encode($result);
       }else{
          if($retweetBy != $postedby){
-            $this->user->create('notification',array('notificationFor'=>$postedby,'notificationFron'=>$retweetBy,"target"=>$commentID,"type"=>"retweet","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
+            $this->user->create('notification',array('notificationFor'=>$postedby,'notificationFrom'=>$retweetBy,"target"=>$commentID,"type"=>"retweet","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
          }
          //User has notliked
           $this->user->create('retweet',array('retweetBy'=>$retweetBy,'retweetFrom'=>$commentID,'status'=>$status,'tweetOn'=>date('Y-m-d H:i:s')));
@@ -273,13 +273,19 @@ class Tweet{
       }
   }
 
-  public function comment($commentBy,$commentOn,$comment){
+  public function comment($commentBy,$commentOn,$comment,$postedby){
       if($this->wasCommentBy($commentBy,$commentOn)){
+         if($commentBy != $postedby){
+            $this->user->delete('notification',array('notificationFor'=>$postedby,'notificationFrom'=>$commentBy,"target"=>$commentOn,"type"=>"comment","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
+         }
          //User has already liked
          $this->user->delete('comment',array('commentBy'=>$commentBy,'commentOn'=>$commentOn));
          $result=array("comments"=>-1);
          return json_encode($result);
       }else{
+         if($commentBy != $postedby){
+            $this->user->create('notification',array('notificationFor'=>$postedby,'notificationFrom'=>$commentBy,"target"=>$commentOn,"type"=>"comment","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
+         }
          //User has notliked
          $this->user->create('comment',array('commentBy'=>$commentBy,'commentOn'=>$commentOn,'comment'=>$comment,'commentAt'=>date('Y-m-d H:i:s')));
          $result=array("comments"=>1);
@@ -295,8 +301,11 @@ class Tweet{
    return $stmt->rowCount() > 0;
   }
 
-  public function delComment($commentBy,$commentOn){
+  public function delComment($commentBy,$commentOn,$postedby){
       if($this->wasCommentBy($commentBy,$commentOn)){
+         if($commentBy != $postedby){
+            $this->user->delete('notification',array('notificationFor'=>$postedby,'notificationFrom'=>$commentBy,"target"=>$commentOn,"type"=>"comment","status"=>"0","notificationCount"=>"0",'notificationOn'=>date('Y-m-d H:i:s')));
+         }
          //User has already liked
          $this->user->delete('comment',array('commentBy'=>$commentBy,'commentOn'=>$commentOn));
          $result=array("delComment"=>-1);
