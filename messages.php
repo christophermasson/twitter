@@ -83,7 +83,7 @@ if(!isset($_GET['message'])){
           <section class="chatsMessageContainer" aria-labelledby="detail header" aria-header="Section header" role="region">
                 <div class="chat-header-top">
                     <div class="chat-header-left">
-                    <a href="<?php echo url_for($otheruserData->username); ?>" class="chat-header-image-wrapper">
+                    <a href="<?php echo url_for(h(u($otheruserData->username))); ?>" class="chat-header-image-wrapper">
                         <img src="<?php echo url_for($otheruserData->profileImage);  ?>" alt="<?php echo $otheruserData->firstName.' '.$otheruserData->lastName; ?>">
                     </a>
                     <div class="chat-header-name-wrapper">
@@ -148,6 +148,54 @@ if(!isset($_GET['message'])){
             })
         }
         userLoad();
+        var userid=$(".user-info").data("userid");
+        var otherid=$(".user-info").data("otherid");
+        var useridForAjax,otheridForAjax;
+        function xyz(name,surname,callback){
+            if(typeof callback=='function'){
+                callback(name,surname);
+            }else{
+                alert("Argument is not function type");
+            }
+        }
+
+        function abc(var1,var2){
+            if(var1==undefined || var2==undefined){
+                return useridForAjax=userid,otheridForAjax=otherid;
+            }else{
+                return useridForAjax=var1,otheridForAjax=var2;
+            }
+        }
+        setTimeout(() => {
+            $(document).on("keyup","#statusEmoji",function(e){
+            var ThisEl=$(this);
+            var rawMsg=$(this).val();
+            if(rawMsg !=""){
+                if(e.which==13 || e.keyCode==13){
+                    if(useridForAjax===undefined){
+                        xyz(useridForAjax,otheridForAjax,abc);
+                    }
+
+                    $.ajax({
+                        type:"POST",
+                        url:"http://localhost/twitter/backend/ajax/message.php",
+                        data:{
+                            useridForAjax:useridForAjax,
+                            otheridForAjax:otheridForAjax,
+                            msg:rawMsg
+                        },
+                        success:function(data){
+                            $(ThisEl).val("");
+                            userLoad();
+                            $(".msg-box").html(data);
+                        }
+                    })
+                }
+            }
+        })
+            
+        },500);
+       
     })
 </script>
 <script src="<?php echo url_for("frontend/assets/js/delete.js"); ?>"></script>
