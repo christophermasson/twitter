@@ -8,7 +8,7 @@ if(is_post_request()){
         $tweetID=h($_POST['tweetID']);
         $postedBy=h($_POST['likeOn']);
 
-        echo $loadFromTweet->likes($likeBy,$tweetID);
+        echo $loadFromTweet->likes($likeBy,$tweetID,$postedBy);
 
     }
 }

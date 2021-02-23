@@ -35,10 +35,11 @@ $(function(){
     $(document).on("click",".retweet-it,.retweeted-it",function(){
         let postId=$button.data('post');
         let userId=$button.data('user');
+        let postedby=$button.data('postedby');
         let retweetText="";
         let wasRetweeted=$(this).hasClass("retweeted-it");
         if(wasRetweeted){
-            $.post("http://localhost/twitter/backend/ajax/retweet.php",{tweetID:postId,retweetBy:userId,status:retweetText},function(data){
+            $.post("http://localhost/twitter/backend/ajax/retweet.php",{tweetID:postId,retweetBy:userId,status:retweetText,tweetby:postedby},function(data){
                 let result=JSON.parse(data);
                 updateRetweetValue($counter,result.retweets);
         
@@ -52,7 +53,7 @@ $(function(){
         
             })
         }else{
-            $.post("http://localhost/twitter/backend/ajax/retweet.php",{tweetID:postId,retweetBy:userId,status:retweetText},function(data){
+            $.post("http://localhost/twitter/backend/ajax/retweet.php",{tweetID:postId,retweetBy:userId,status:retweetText,tweetby:postedby},function(data){
                     let result=JSON.parse(data);
                     updateRetweetValue($counter,result.retweets);
             

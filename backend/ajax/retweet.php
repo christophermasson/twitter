@@ -7,8 +7,9 @@ if(is_post_request()){
         $retweetBy=h($_POST['retweetBy']);
         $tweetID=h($_POST['tweetID']);
         $status=$_POST['status'];
+        $tweetby=$_POST['tweetby'];
 
-        echo $loadFromTweet->retweetCount($retweetBy,$tweetID,$status);
+        echo $loadFromTweet->retweetCount($retweetBy,$tweetID,$status,$tweetby);
 
     }
 
