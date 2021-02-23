@@ -22,5 +22,12 @@ class Message{
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public function notificationCount($userid){
+        $stmt = $this->pdo->prepare("SELECT * FROM notification LEFT JOIN users ON notification.notificationFrom=users.user_id WHERE notification.notificationFor=:userid AND notification.notificationCount='0' AND notificationFrom !=:userid ORDER BY `notification`.notificationOn DESC");
+        $stmt->bindParam(":userid", $userid, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
 }
 ?>

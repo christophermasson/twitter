@@ -1592,3 +1592,24 @@ aside.chat-footer {
 /* End of chat Footer */
 /* End of chat style */
 /* End of message style */
+/* Notification style */
+a.link.global-nav__primary-link-notif {
+    position: relative;
+}
+
+span.notification-badge{
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    padding: 1px 4px;
+    left: 5px;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 3px;
+    background: red;
+    opacity:0;
+}
+.notification-badge-show {
+    opacity:1 !important;
+}
+/* End of notification style */

@@ -23,5 +23,6 @@ if(is_get_request()){
 }
 $user=$loadFromUser->userData($user_id);
 $profileData=$loadFromUser->userData($profileId);
+$notificationCount=$loadFromMessage->notificationCount($user_id);
 
 ?>
