@@ -14,6 +14,7 @@ if(!isset($pageTitle)){
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,500&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="<?php echo url_for('frontend/assets/favicon/twitter.ico'); ?>" type="image/x-icon">
     <link rel="stylesheet" href="<?php echo url_for('frontend/assets/css/master.css'); ?>">
+    <link rel="stylesheet" href="<?php echo url_for('frontend/assets/dist/emojionearea.min.css'); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.css" integrity="sha512-w+u2vZqMNUVngx+0GVZYM21Qm093kAexjueWOv9e9nIeYJb1iEfiHC7Y+VvmP/tviQyA5IR32mwN/5hTEJx6Ng==" crossorigin="anonymous" />
     <link rel="stylesheet" href="<?php echo url_for('frontend/assets/css/font-awesome/css/font-awesome.css'); ?>">
     <script src="<?php echo url_for('frontend/assets/js/jquery.min.js')  ?>"></script>

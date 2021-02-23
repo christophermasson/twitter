@@ -125,6 +125,10 @@ if(!isset($_GET['message'])){
 <script>
     $uid=$(".u-p-id").data("uid");
     $(document).ready(function(){
+        $("#statusEmoji").emojioneArea({
+            pickerPosition:"top",
+            spellCheck:true
+        })
         $(document).on("click",".msg-user-name-wrap",function(){
             var otherid=$(this).data("profileid");
             // alert(otheruserid);
@@ -167,10 +171,10 @@ if(!isset($_GET['message'])){
             }
         }
         setTimeout(() => {
-            $(document).on("keyup","#statusEmoji",function(e){
+            $(document).on("keyup",".emojionearea-editor",function(e){
             var ThisEl=$(this);
-            var rawMsg=$(this).val();
-            if(rawMsg !=""){
+            var rawMsg=$(this).html();
+            var msgData=rawMsg.slice(0,-15);
                 if(e.which==13 || e.keyCode==13){
                     if(useridForAjax===undefined){
                         xyz(useridForAjax,otheridForAjax,abc);
@@ -182,23 +186,71 @@ if(!isset($_GET['message'])){
                         data:{
                             useridForAjax:useridForAjax,
                             otheridForAjax:otheridForAjax,
-                            msg:rawMsg
+                            msg:msgData
                         },
                         success:function(data){
-                            $(ThisEl).val("");
+                           $(".emojionearea-editor").html("");
                             userLoad();
                             $(".msg-box").html(data);
                         }
                     })
                 }
-            }
+            
         })
             
         },500);
+
+            $(document).on("click","#semdMsgBtn",function(e){
+            var ThisEl=$(this);
+            let msgData=$(".emojionearea-editor").html();
+            
+                    if(useridForAjax===undefined){
+                        xyz(useridForAjax,otheridForAjax,abc);
+                    }
+
+                    $.ajax({
+                        type:"POST",
+                        url:"http://localhost/twitter/backend/ajax/message.php",
+                        data:{
+                            useridForAjax:useridForAjax,
+                            otheridForAjax:otheridForAjax,
+                            msg:msgData
+                        },
+                        success:function(data){
+                           $(".emojionearea-editor").html("");
+                            userLoad();
+                            $(".msg-box").html(data);
+                        }
+                    })
+            
+        })
+
+        function loadMessage(){
+              $.ajax({
+                        type:"POST",
+                        url:"http://localhost/twitter/backend/ajax/message.php",
+                        data:{
+                            yourid:userid,
+                            showmsg:otherid
+                        },
+                        success:function(data){
+                            userLoad();
+                            $(".msg-box").html(data);
+                        }
+                    })
+        }
+
+        var loadTimer=setInterval(() => {
+            userLoad();
+            loadMessage();
+        },1000);
+            
+      
        
     })
 </script>
 <script src="<?php echo url_for("frontend/assets/js/delete.js"); ?>"></script>
+<script src="<?php echo url_for("frontend/assets/dist/emojionearea.min.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/search.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/message.js"); ?>"></script>
 <script src="<?php echo url_for("frontend/assets/js/fetchTweet.js"); ?>"></script>

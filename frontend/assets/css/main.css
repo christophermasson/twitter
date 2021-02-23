@@ -1072,6 +1072,9 @@ svg.p-btn-icon {
     position:absolute;
     cursor:pointer;
 }
+.chat-footer .emojionearea{
+    height:38px;
+}
 #camera-small{
     width:5rem;
     height:5rem;
