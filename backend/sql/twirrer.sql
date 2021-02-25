@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2021 at 06:31 PM
+-- Generation Time: Feb 25, 2021 at 06:59 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -49,6 +49,13 @@ CREATE TABLE `follow` (
   `followOn` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `follow`
+--
+
+INSERT INTO `follow` (`followID`, `sender`, `receiver`, `followStatus`, `followOn`) VALUES
+(1, 2, 1, '1', '2021-02-25 17:55:35');
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +67,13 @@ CREATE TABLE `likes` (
   `likeOn` int(11) NOT NULL,
   `likeBy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`likeID`, `likeOn`, `likeBy`) VALUES
+(1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -75,6 +89,14 @@ CREATE TABLE `messages` (
   `messageOn` datetime NOT NULL DEFAULT current_timestamp(),
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`messageID`, `message`, `messageTo`, `messageFrom`, `messageOn`, `status`) VALUES
+(1, 'If you build it, they won\'t come.<div><br></div>If you build an audience before building it, they\'ll come rushing.', 1, 2, '2021-02-25 17:57:36', 0),
+(2, 'That\'s true bro.', 2, 1, '2021-02-25 17:58:39', 0);
 
 -- --------------------------------------------------------
 
@@ -92,6 +114,16 @@ CREATE TABLE `notification` (
   `notificationCount` int(11) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`ID`, `notificationFor`, `notificationFrom`, `target`, `type`, `notificationOn`, `notificationCount`, `status`) VALUES
+(1, 1, 2, 0, 'follow', '2021-02-25 17:55:35', 0, 0),
+(2, 1, 2, 1, 'like', '2021-02-25 17:56:21', 0, 0),
+(3, 1, 2, 1, 'message', '2021-02-25 17:57:36', 0, 0),
+(4, 2, 1, 2, 'message', '2021-02-25 17:58:39', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -145,6 +177,13 @@ CREATE TABLE `tweets` (
   `postedOn` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tweets`
+--
+
+INSERT INTO `tweets` (`tweetID`, `status`, `tweetBy`, `tweetImage`, `postedOn`) VALUES
+(1, 'If you build it, they won\'t come.\n\nIf you build an audience before building it, they\'ll come rushing.', 1, '', '2021-02-25 17:38:55');
+
 -- --------------------------------------------------------
 
 --
@@ -174,7 +213,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstName`, `lastName`, `username`, `email`, `password`, `profileImage`, `profileCover`, `following`, `followers`, `bio`, `country`, `website`, `signUpDate`, `profileEdit`) VALUES
-(1, 'Christopher', 'Glikpo', 'christopherglikpo', 'christopherglikpoqwesi@gmail.com', '$2y$10$7YMYyQeO/3J9j0eAyFf88un92Meo0wyi9ww25wG5mHmE61.fkpE26', 'frontend/profileImage/1/6671b10f5a20118853d9b18e5.png', 'frontend/profileCover/1/a0b08bb1aa3381c31278d15a6.png', 0, 0, '', '', '', '2021-02-25 18:24:17', '1');
+(1, 'Christopher', 'Glikpo', 'christopherglikpo', 'christopherglikpoqwesi@gmail.com', '$2y$10$7YMYyQeO/3J9j0eAyFf88un92Meo0wyi9ww25wG5mHmE61.fkpE26', 'frontend/profileImage/1/6671b10f5a20118853d9b18e5.png', 'frontend/profileCover/1/a0b08bb1aa3381c31278d15a6.png', 0, 1, '', '', '', '2021-02-25 18:24:17', '1'),
+(2, 'Roberto', 'Kong', 'robertokong', 'chrisqwesi@gmail.com', '$2y$10$JeDTjCK89soVQHm4M4lKsea1jfJ0RUvC89YkZEh/13Q.H/BcXIvky', 'frontend/profileImage/2/65e1436e78d4daf96ad2f269b.png', 'frontend/profileCover/2/851bf34bda1a1c98449f62edb.png', 1, 0, '', '', '', '2021-02-25 18:51:53', '1');
 
 -- --------------------------------------------------------
 
@@ -196,7 +236,9 @@ CREATE TABLE `verification` (
 
 INSERT INTO `verification` (`id`, `user_id`, `code`, `status`, `createdAt`) VALUES
 (1, 1, 'cee7187dab4403fefcf6a4b53', '1', '2021-02-25 18:24:19'),
-(2, 1, 'cee7187dab4403fefcf6a4b53', '1', '2021-02-25 18:24:30');
+(2, 1, 'cee7187dab4403fefcf6a4b53', '1', '2021-02-25 18:24:30'),
+(3, 2, '232fe835f8ed74caa25c470ce', '1', '2021-02-25 18:51:55'),
+(4, 2, '232fe835f8ed74caa25c470ce', '1', '2021-02-25 18:54:32');
 
 --
 -- Indexes for dumped tables
@@ -285,25 +327,25 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `follow`
 --
 ALTER TABLE `follow`
-  MODIFY `followID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `followID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `messageID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `messageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `notification`
 --
 ALTER TABLE `notification`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `retweet`
@@ -327,19 +369,19 @@ ALTER TABLE `trends`
 -- AUTO_INCREMENT for table `tweets`
 --
 ALTER TABLE `tweets`
-  MODIFY `tweetID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tweetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `verification`
 --
 ALTER TABLE `verification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
