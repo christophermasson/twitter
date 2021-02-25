@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2021 at 06:02 PM
+-- Generation Time: Feb 25, 2021 at 06:13 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -59,6 +59,38 @@ CREATE TABLE `likes` (
   `likeID` int(11) NOT NULL,
   `likeOn` int(11) NOT NULL,
   `likeBy` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `messageID` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `messageTo` int(11) NOT NULL,
+  `messageFrom` int(11) NOT NULL,
+  `messageOn` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+CREATE TABLE `notification` (
+  `ID` int(11) NOT NULL,
+  `notificationFor` int(11) NOT NULL,
+  `notificationFrom` int(11) NOT NULL,
+  `target` int(11) NOT NULL,
+  `type` enum('like','comment','retweet','follow','message','mention') NOT NULL,
+  `notificationOn` datetime NOT NULL DEFAULT current_timestamp(),
+  `notificationCount` int(11) NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -174,6 +206,18 @@ ALTER TABLE `likes`
   ADD PRIMARY KEY (`likeID`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`messageID`);
+
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `retweet`
 --
 ALTER TABLE `retweet`
@@ -233,6 +277,18 @@ ALTER TABLE `follow`
 --
 ALTER TABLE `likes`
   MODIFY `likeID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `messageID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `retweet`
