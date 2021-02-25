@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2021 at 06:13 PM
+-- Generation Time: Feb 25, 2021 at 06:31 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.27
 
@@ -169,6 +169,13 @@ CREATE TABLE `users` (
   `profileEdit` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `firstName`, `lastName`, `username`, `email`, `password`, `profileImage`, `profileCover`, `following`, `followers`, `bio`, `country`, `website`, `signUpDate`, `profileEdit`) VALUES
+(1, 'Christopher', 'Glikpo', 'christopherglikpo', 'christopherglikpoqwesi@gmail.com', '$2y$10$7YMYyQeO/3J9j0eAyFf88un92Meo0wyi9ww25wG5mHmE61.fkpE26', 'frontend/profileImage/1/6671b10f5a20118853d9b18e5.png', 'frontend/profileCover/1/a0b08bb1aa3381c31278d15a6.png', 0, 0, '', '', '', '2021-02-25 18:24:17', '1');
+
 -- --------------------------------------------------------
 
 --
@@ -182,6 +189,14 @@ CREATE TABLE `verification` (
   `status` enum('0','1') NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `verification`
+--
+
+INSERT INTO `verification` (`id`, `user_id`, `code`, `status`, `createdAt`) VALUES
+(1, 1, 'cee7187dab4403fefcf6a4b53', '1', '2021-02-25 18:24:19'),
+(2, 1, 'cee7187dab4403fefcf6a4b53', '1', '2021-02-25 18:24:30');
 
 --
 -- Indexes for dumped tables
@@ -318,13 +333,13 @@ ALTER TABLE `tweets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `verification`
 --
 ALTER TABLE `verification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
